@@ -8,7 +8,7 @@ A running list of test cases that I used to check my code. Skip to:
 - [Repeated passages](#repeated-passages)
 - [Empty passage](#empty-passage)
 - [Whitespace character passages](#whitespace-character-passages)
-- Passages with special characters or formatting
+- [Passages with special characters or formatting](#passages-with-special-characters-or-formatting)
 - Non-existent passages
 - Passages in different orders
 
@@ -499,3 +499,43 @@ Resulting passages:
 
 ### Passages with special characters or formatting
 
+```
+document = """Special *formatting* and (punctuation) test!
+Some text with @#$% special chars.
+More text with <html> tags and line-breaks
+    plus some indentation."""
+passages = [
+    "*formatting*",
+    "@#$%",
+    "<html>",
+    "    plus"
+]
+```
+
+Passages:
+
+|passage|start|end|
+|:-:|:-:|:-:|
+|`"*formatting*"`|8|19|
+|`"@#$%"`|60|63|
+|`"<html>"`|95|100|
+|`"    plus"`|123|130|
+
+Spans:
+
+|start|end|distance|<= `max_dist`|
+|:-:|:-:|:-:|:-:|
+|`"*formatting*"`|`"@#$%"`|41|`False`|
+|`"*formatting*"`|`"<html>"`|76|`False`|
+|`"*formatting*"`|`"    plus"`|104|`False`|
+
+|start|end|distance|<= `max_dist`|
+|:-:|:-:|:-:|:-:|
+|`"@#$%"`|`"<html>"`|32|`False`|
+|`"@#$%"`|`"    plus"`|60|`False`|
+
+|start|end|distance|<= `max_dist`|
+|:-:|:-:|:-:|:-:|
+|`"<html>"`|`"    plus"`|23|`False`|
+
+All spans are greater than `max_dist` so there is no text extracted from the document.
