@@ -109,7 +109,7 @@ This would result in the following passages:
 |`"fox jumps over the lazy"`|`"over the lazy dog.\nA clever"`|-12|52
 
 |start|end|distance|
-|:-:|:-:|:-:|:-:|
+|:-:|:-:|:-:|
 |`"over the lazy dog.\nA clever"`|`"the lazy dog"`|-21|42
 
 I'll update `end_pos` to be:
