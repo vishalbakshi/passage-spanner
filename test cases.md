@@ -276,7 +276,9 @@ Filtering out all spans that have a distance of more than 20 characters and grou
 The final passages should be:
 
 ```
-""
-""
-""
+"magical crystal glowed brightly.\nIts light"
+"crystal glowed brightly.\nIts light danced"
+"glowed brightly.\nIts light danced"
+"brightly.\nIts light danced"
+"Deep within, secrets waited to be discovered"
 ```
