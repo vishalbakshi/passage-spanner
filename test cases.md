@@ -179,3 +179,11 @@ Filtering out all spans that have a distance of more than 20 characters and grou
 |:-:|:-:|:-:|:-:|
 |`'the enchanted forest.\nIts rainbow'`|`'rainbow mane'`|-6|`True`|
 
+The final passages should be:
+
+```
+"majestic unicorn galloped through the enchanted forest.\nIts rainbow mane"
+"unicorn galloped through the enchanted forest.\nIts rainbow"
+"galloped through the enchanted forest.\nIts rainbow"
+"the enchanted forest.\nIts rainbow mane"
+```
