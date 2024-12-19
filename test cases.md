@@ -117,3 +117,34 @@ I'll update `end_pos` to be:
 ```python
 def end_pos(self): return self.start_pos + self.length - 1
 ```
+
+### Passages that are completely contained within other passages
+
+```
+"""The majestic unicorn galloped through the enchanted forest.
+Its rainbow mane sparkled in the golden sunlight.
+Ancient magic flowed through the mystical creature."""
+```
+
+Passages:
+
+|passage|start|end|
+|:-:|:-:|:-:|
+|`'majestic unicorn galloped through the enchanted'`|4|50
+|`'unicorn galloped'`|13|28
+|`'galloped through'`|21|36
+|`'the enchanted forest.\nIts rainbow'`|38|70
+|`'rainbow mane'`|64|75
+|`'Ancient magic'`|110|122
+
+Spans:
+
+|start|end|distance|<= `max_dist`|
+|:-:|:-:|:-:|:-:|
+|`'majestic unicorn galloped through the enchanted'`|`'unicorn galloped'`|-37||
+|`'majestic unicorn galloped through the enchanted'`|`'galloped through'`|-29||
+|`'majestic unicorn galloped through the enchanted'`|`'the enchanted forest.\nIts rainbow'`|-12||
+|`'majestic unicorn galloped through the enchanted'`|`'rainbow mane'`|14||
+|`'majestic unicorn galloped through the enchanted'`|`'Ancient magic'`|60||
+
+
