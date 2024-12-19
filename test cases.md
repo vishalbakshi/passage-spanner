@@ -201,3 +201,67 @@ The final passages should be:
 ```
 
 ### Multiple passages that could form chains of overlaps
+
+```
+"""Once upon a time, a magical crystal glowed brightly.
+Its light danced across the ancient cavern walls.
+Deep within, secrets waited to be discovered."""
+```
+
+Passages:
+
+|passage|start|end|
+|:-:|:-:|:-:|
+|`"magical crystal"`|20|34|
+|`"crystal glowed"`|28|41|
+|`"glowed brightly"`|36|50|
+|`"brightly.\nIts light"`|43|61|
+|`"light danced"`|57|68|
+|`"Deep within"`|103|113|
+|`"to be discovered"`|131|146|
+
+Spans:
+
+|start|end|distance|<= `max_dist`|
+|:-:|:-:|:-:|:-:|
+|`"magical crystal"`|`"crystal glowed"`|-6|`True`|
+|`"magical crystal"`|`"glowed brightly"`|2|`True`|
+|`"magical crystal"`|`"brightly.\nIts light"`|9|`True`|
+|`"magical crystal"`|`"light danced"`|23|`False`|
+|`"magical crystal"`|`"Deep within"`|69|`False`|
+|`"magical crystal"`|`"to be discovered"`|97|`False`|
+|`"crystal glowed"`|`"glowed brightly"`|-5|`True`|
+|`"crystal glowed"`|`"brightly.\nIts light"`|2|`True`|
+|`"crystal glowed"`|`"light danced"`|16|`True`|
+|`"crystal glowed"`|`"Deep within"`|62|`False`|
+|`"crystal glowed"`|`"to be discovered"`|90|`False`|
+|`"glowed brightly"`||||
+|`"glowed brightly"`||||
+|`"glowed brightly"`||||
+|`"glowed brightly"`||||
+
+Filtering out all spans that have a distance of more than 20 characters and grouping by first passage:
+
+|start|end|distance|<= `max_dist`|
+|:-:|:-:|:-:|:-:|
+
+
+|start|end|distance|<= `max_dist`|
+|:-:|:-:|:-:|:-:|
+|||||
+
+|start|end|distance|<= `max_dist`|
+|:-:|:-:|:-:|:-:|
+|||||
+
+|start|end|distance|<= `max_dist`|
+|:-:|:-:|:-:|:-:|
+|||||
+
+The final passages should be:
+
+```
+""
+""
+""
+```
