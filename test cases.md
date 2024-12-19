@@ -157,3 +157,25 @@ Spans:
 |`'the enchanted forest.\nIts rainbow'`|`'Ancient magic'`|40|`False`|
 |`'rainbow mane'`|`'Ancient magic'`|35|`False`|
 
+Filtering out all spans that have a distance of more than 20 characters and grouping by first passage:
+
+|start|end|distance|<= `max_dist`|
+|:-:|:-:|:-:|:-:|
+|`'majestic unicorn galloped through the enchanted'`|`'unicorn galloped'`|-37|`True`|
+|`'majestic unicorn galloped through the enchanted'`|`'galloped through'`|-29|`True`|
+|`'majestic unicorn galloped through the enchanted'`|`'the enchanted forest.\nIts rainbow'`|-12|`True`|
+|`'majestic unicorn galloped through the enchanted'`|`'rainbow mane'`|14|`True`|
+
+|start|end|distance|<= `max_dist`|
+|:-:|:-:|:-:|:-:|
+|`'unicorn galloped'`|`'galloped through'`|-7|`True`|
+|`'unicorn galloped'`|`'the enchanted forest.\nIts rainbow'`|10|`True`|
+
+|start|end|distance|<= `max_dist`|
+|:-:|:-:|:-:|:-:|
+|`'galloped through'`|`'the enchanted forest.\nIts rainbow'`|2|`True`|
+
+|start|end|distance|<= `max_dist`|
+|:-:|:-:|:-:|:-:|
+|`'the enchanted forest.\nIts rainbow'`|`'rainbow mane'`|-6|`True`|
+
