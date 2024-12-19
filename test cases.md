@@ -1,7 +1,6 @@
 ## Test Cases
 
 A running list of test cases that I used to check my code. Skip to:
-
 - [Passages that partially overlap](#passages-that-partially-overlap)
 - [Passages that are completely contained within other passages](#passages-that-are-completely-contained-within-other-passages)
 - [Multiple passages that could form chains of overlaps](#multiple-passages-that-could-form-chains-of-overlaps)
@@ -539,3 +538,23 @@ Spans:
 |`"<html>"`|`"    plus"`|23|`False`|
 
 All spans are greater than `max_dist` so there is no text extracted from the document.
+
+### Non-existent passages
+
+```
+document = """The sky is blue.
+The grass is green.
+The sun is yellow.
+The rose is red.
+The cloud is white."""
+
+passages = [
+    "The sky is blue.",
+    "The grass is green.",
+    "This passage is not in the document.",
+    "The sun is yellow.",
+    "The rose is red.",
+    "The cloud is white.",
+    "This passage is also not in the document."
+]
+```
