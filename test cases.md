@@ -5,7 +5,7 @@ A running list of test cases that I used to check my code. Skip to:
 - [Passages that partially overlap](#passages-that-partially-overlap)
 - [Passages that are completely contained within other passages](#passages-that-are-completely-contained-within-other-passages)
 - [Multiple passages that could form chains of overlaps](#multiple-passages-that-could-form-chains-of-overlaps)
-- Passages that appear multiple times in the document
+- [Repeated passages](#repeated-passages)
 - Empty or whitespace-only passages
 - Passages with special characters or formatting
 - Non-existent passages
@@ -286,4 +286,48 @@ The final passages should be:
 "glowed brightly.\nIts light danced"
 "brightly.\nIts light danced"
 "Deep within, secrets waited to be discovered"
+```
+
+### Repeated passages
+
+```
+"""The quick brown fox jumps over the lazy dog.
+The quick brown fox runs through the field.
+A lazy dog sleeps in the sun."""
+```
+
+Passages:
+
+|passage|start|end|
+|:-:|:-:|:-:|
+|`"quick brown fox"`|4|18|
+|`"quick brown fox"`|49|63|
+|`"lazy dog"`|35|42|
+|`"lazy dog"`|91|98|
+
+Spans:
+
+|start|end|distance|<= `max_dist`|
+|:-:|:-:|:-:|:-:|
+|`"quick brown fox"`|`"quick brown fox"`|||
+|`"quick brown fox"`|`"lazy dog"`|||
+|`"quick brown fox"`|`"lazy dog"`|||
+
+Filtering out all spans that have a distance of more than 20 characters and grouping by first passage:
+
+|start|end|distance|<= `max_dist`|
+|:-:|:-:|:-:|:-:|
+|||||
+
+
+|start|end|distance|<= `max_dist`|
+|:-:|:-:|:-:|:-:|
+|||||
+
+
+The final passages should be:
+
+```
+""
+""
 ```
