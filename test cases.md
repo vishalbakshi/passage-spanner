@@ -588,3 +588,46 @@ Spans:
 |`"The sky is blue."`|`"The sun is yellow."`|22|`False`
 |`"The sky is blue."`|`"The rose is red."`|41|`False`
 |`"The sky is blue."`|`"The cloud is white."`|58|`False`
+
+|start|end|distance|<= `max_dist`|
+|:-:|:-:|:-:|:-:|
+|`"The grass is green."`|`"The sun is yellow."`|2|`True`|
+|`"The grass is green."`|`"The rose is red."`|21|`False`|
+|`"The grass is green."`|`"The cloud is white."`|38|`False`|
+
+|start|end|distance|<= `max_dist`|
+|:-:|:-:|:-:|:-:|
+|`"The sun is yellow."`|`"The rose is red."`|2|`True`|
+|`"The sun is yellow."`|`"The cloud is white."`|21|`False`|
+
+|start|end|distance|<= `max_dist`|
+|:-:|:-:|:-:|:-:|
+|`"The rose is red."`|`"The cloud is white."`|2|`True`|
+
+Largest Spans for each starting Passage that are under `max_dist`:
+
+|start|end|distance|<= `max_dist`|
+|:-:|:-:|:-:|:-:|
+|`"The sky is blue."`|`"The grass is green."`|2|`True`
+
+|start|end|distance|<= `max_dist`|
+|:-:|:-:|:-:|:-:|
+|`"The grass is green."`|`"The sun is yellow."`|2|`True`|
+
+|start|end|distance|<= `max_dist`|
+|:-:|:-:|:-:|:-:|
+|`"The sun is yellow."`|`"The rose is red."`|2|`True`|
+
+|start|end|distance|<= `max_dist`|
+|:-:|:-:|:-:|:-:|
+|`"The rose is red."`|`"The cloud is white."`|2|`True`|
+
+Final result:
+
+```
+"The sky is blue.\nThe grass is green."
+"The grass is green.\nThe sun is yellow."
+"The sun is yellow.\nThe rose is red."
+"The rose is red.\nThe cloud is white."
+
+```
