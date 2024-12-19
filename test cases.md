@@ -1,6 +1,10 @@
 ## Test Cases
 
-A running list of test cases that I used to check my code.
+A running list of test cases that I used to check my code. Skip to:
+
+- [Passages that partially overlap](#passages-that-partially-overlap)
+- [Passages that are completely contained within other passages](#passages-that-are-completely-contained-within-other-passages)
+- [Multiple passages that could form chains of overlaps](#multiple-passages-that-could-form-chains-of-overlaps)
 
 ### Passages that partially overlap
 
@@ -195,3 +199,5 @@ The final passages should be:
 "galloped through the enchanted forest.\nIts rainbow"
 "the enchanted forest.\nIts rainbow mane"
 ```
+
+### Multiple passages that could form chains of overlaps
