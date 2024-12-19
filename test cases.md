@@ -566,3 +566,15 @@ passages = [
     "This passage is also not in the document."
 ]
 ```
+
+Passages:
+
+|passage|start|end|
+|:-:|:-:|:-:|
+|`"The sky is blue."`|0||
+|`"The grass is green."`|17||
+|`"This passage is not in the document."`|-1||
+|`"The sun is yellow."`|37||
+|`"The rose is red."`|56||
+|`"The cloud is white."`|73||
+|`"This passage is also not in the document."`|-1||
