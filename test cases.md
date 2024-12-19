@@ -340,3 +340,59 @@ The final passages should be:
 "quick brown fox jumps over the lazy dog"
 "lazy dog.\nThe quick brown fox"
 ```
+
+### Empty passage
+
+After running this case, I updated the `end_pos` calculation to account for `0`-length strings. 
+
+```
+"doc"
+```
+
+Passages:
+
+|passage|start|end|
+|:-:|:-:|:-:|
+|`''`|0|0|
+|`''`|1|1|
+|`''`|2|2|
+|`''`|3|3|
+
+Spans:
+
+|start|end|distance|<= `max_dist`|
+|:-:|:-:|:-:|:-:|
+|`''`|`''`|1|`True`|
+|`''`|`''`|2|`True`|
+|`''`|`''`|3|`True`|
+
+|start|end|distance|<= `max_dist`|
+|:-:|:-:|:-:|:-:|
+|`''`|`''`|1|`True`|
+|`''`|`''`|2|`True`|
+
+|start|end|distance|<= `max_dist`|
+|:-:|:-:|:-:|:-:|
+|`''`|`''`|1|`True`|
+
+Longest span for each starting passage:
+
+|start|end|distance|<= `max_dist`|
+|:-:|:-:|:-:|:-:|
+|`''`|`''`|3|`True`|
+
+|start|end|distance|<= `max_dist`|
+|:-:|:-:|:-:|:-:|
+|`''`|`''`|2|`True`|
+
+|start|end|distance|<= `max_dist`|
+|:-:|:-:|:-:|:-:|
+|`''`|`''`|1|`True`|
+
+Resulting passages:
+
+```
+"doc"
+"oc"
+"c"
+```
