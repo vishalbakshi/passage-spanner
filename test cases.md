@@ -8,8 +8,8 @@ A running list of test cases that I used to check my code. Skip to:
 - [Empty passage](#empty-passage)
 - [Whitespace character passages](#whitespace-character-passages)
 - [Passages with special characters or formatting](#passages-with-special-characters-or-formatting)
-- Non-existent passages
-- Passages in different orders
+- [Non-existent passages](#non-existent-passages)
+- Passages in different orders (TBD)
 
 `max_dist` = 20.
 
