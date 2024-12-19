@@ -16,9 +16,17 @@ A running list of test cases that I used to check my code. Skip to:
 ### Passages that partially overlap
 
 ```
-"""The quick brown fox jumps over the lazy dog.
+document = """The quick brown fox jumps over the lazy dog.
 A clever fox leaps across the sleeping hound.
 The nimble creature bounds through the garden."""
+
+passages = [
+    "brown fox jumps over",
+    "fox jumps over the lazy",
+    "over the lazy dog.\nA clever",  
+    "the lazy dog",
+    "sleeping hound.\nThe nimble"    
+]
 ```
 
 Here are the starting and ending positions of each passage in the `document` (manually counted):
