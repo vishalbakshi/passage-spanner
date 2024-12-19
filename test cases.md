@@ -118,6 +118,14 @@ I'll update `end_pos` to be:
 def end_pos(self): return self.start_pos + self.length - 1
 ```
 
+Expected final passages:
+
+```
+"brown fox jumps over the lazy dog.\nA clever"
+"fox jumps over the lazy dog.\nA clever"
+"over the lazy dog."
+```
+
 ### Passages that are completely contained within other passages
 
 ```
