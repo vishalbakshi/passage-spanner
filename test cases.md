@@ -235,28 +235,43 @@ Spans:
 |`"crystal glowed"`|`"light danced"`|16|`True`|
 |`"crystal glowed"`|`"Deep within"`|62|`False`|
 |`"crystal glowed"`|`"to be discovered"`|90|`False`|
-|`"glowed brightly"`||||
-|`"glowed brightly"`||||
-|`"glowed brightly"`||||
-|`"glowed brightly"`||||
+|`"glowed brightly"`|`"brightly.\nIts light"`|-7|`True`|
+|`"glowed brightly"`|`"light danced"`|7|`True`|
+|`"glowed brightly"`|`"Deep within"`|53|`False`|
+|`"glowed brightly"`|`"to be discovered"`|81|`False`|
+|`"brightly.\nIts light"`|`"light danced"`|-4|`True`|
+|`"brightly.\nIts light"`|`"Deep within"`|42|`False`|
+|`"brightly.\nIts light"`|`"to be discovered"`|70|`False`|
+|`"light danced"`|`"Deep within"`|35|`False`|
+|`"light danced"`|`"to be discovered"`|63|`False`|
+|`"Deep within"`|`"to be discovered"`|18|`True`|
 
 Filtering out all spans that have a distance of more than 20 characters and grouping by first passage:
 
 |start|end|distance|<= `max_dist`|
 |:-:|:-:|:-:|:-:|
-
-
-|start|end|distance|<= `max_dist`|
-|:-:|:-:|:-:|:-:|
-|||||
+|`"magical crystal"`|`"crystal glowed"`|-6|`True`|
+|`"magical crystal"`|`"glowed brightly"`|2|`True`|
+|`"magical crystal"`|`"brightly.\nIts light"`|9|`True`|
 
 |start|end|distance|<= `max_dist`|
 |:-:|:-:|:-:|:-:|
-|||||
+|`"crystal glowed"`|`"glowed brightly"`|-5|`True`|
+|`"crystal glowed"`|`"brightly.\nIts light"`|2|`True`|
+|`"crystal glowed"`|`"light danced"`|16|`True`|
 
 |start|end|distance|<= `max_dist`|
 |:-:|:-:|:-:|:-:|
-|||||
+|`"glowed brightly"`|`"brightly.\nIts light"`|-7|`True`|
+|`"glowed brightly"`|`"light danced"`|7|`True`|
+
+|start|end|distance|<= `max_dist`|
+|:-:|:-:|:-:|:-:|
+|`"brightly.\nIts light"`|`"light danced"`|-4|`True`|
+
+|start|end|distance|<= `max_dist`|
+|:-:|:-:|:-:|:-:|
+|`"Deep within"`|`"to be discovered"`|18|`True`|
 
 The final passages should be:
 
