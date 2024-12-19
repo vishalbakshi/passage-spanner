@@ -496,3 +496,6 @@ Resulting passages:
 " with some "
 " some "
 ```
+
+### Passages with special characters or formatting
+
