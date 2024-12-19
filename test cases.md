@@ -12,9 +12,9 @@ A running list of test cases that I used to check my code. Skip to:
 - Non-existent passages
 - Passages in different orders
 
-### Passages that partially overlap
-
 `max_dist` = 20.
+
+### Passages that partially overlap
 
 ```
 """The quick brown fox jumps over the lazy dog.
