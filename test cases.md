@@ -141,10 +141,19 @@ Spans:
 
 |start|end|distance|<= `max_dist`|
 |:-:|:-:|:-:|:-:|
-|`'majestic unicorn galloped through the enchanted'`|`'unicorn galloped'`|-37||
-|`'majestic unicorn galloped through the enchanted'`|`'galloped through'`|-29||
-|`'majestic unicorn galloped through the enchanted'`|`'the enchanted forest.\nIts rainbow'`|-12||
-|`'majestic unicorn galloped through the enchanted'`|`'rainbow mane'`|14||
-|`'majestic unicorn galloped through the enchanted'`|`'Ancient magic'`|60||
-
+|`'majestic unicorn galloped through the enchanted'`|`'unicorn galloped'`|-37|`True`|
+|`'majestic unicorn galloped through the enchanted'`|`'galloped through'`|-29|`True`|
+|`'majestic unicorn galloped through the enchanted'`|`'the enchanted forest.\nIts rainbow'`|-12|`True`|
+|`'majestic unicorn galloped through the enchanted'`|`'rainbow mane'`|14|`True`|
+|`'majestic unicorn galloped through the enchanted'`|`'Ancient magic'`|60|`False`|
+|`'unicorn galloped'`|`'galloped through'`|-7|`True`|
+|`'unicorn galloped'`|`'the enchanted forest.\nIts rainbow'`|10|`True`|
+|`'unicorn galloped'`|`'rainbow mane'`|36|`False`|
+|`'unicorn galloped'`|`'Ancient magic'`|82|`False`|
+|`'galloped through'`|`'the enchanted forest.\nIts rainbow'`|2|`True`|
+|`'galloped through'`|`'rainbow mane'`|28|`False`|
+|`'galloped through'`|`'Ancient magic'`|74|`False`|
+|`'the enchanted forest.\nIts rainbow'`|`'rainbow mane'`|-6|`True`|
+|`'the enchanted forest.\nIts rainbow'`|`'Ancient magic'`|40|`False`|
+|`'rainbow mane'`|`'Ancient magic'`|35|`False`|
 
