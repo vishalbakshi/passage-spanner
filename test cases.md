@@ -290,6 +290,8 @@ The final passages should be:
 
 ### Repeated passages
 
+Building out this test made me realize that I needed to find all occurences of a passage in a document (`document.find` only returns the first occurence) so I used `regex.finditer`.
+
 ```
 """The quick brown fox jumps over the lazy dog.
 The quick brown fox runs through the field.
@@ -301,33 +303,40 @@ Passages:
 |passage|start|end|
 |:-:|:-:|:-:|
 |`"quick brown fox"`|4|18|
-|`"quick brown fox"`|49|63|
 |`"lazy dog"`|35|42|
+|`"quick brown fox"`|49|63|
 |`"lazy dog"`|91|98|
 
 Spans:
 
 |start|end|distance|<= `max_dist`|
 |:-:|:-:|:-:|:-:|
-|`"quick brown fox"`|`"quick brown fox"`|||
-|`"quick brown fox"`|`"lazy dog"`|||
-|`"quick brown fox"`|`"lazy dog"`|||
-
-Filtering out all spans that have a distance of more than 20 characters and grouping by first passage:
+|`"quick brown fox"`|`"lazy dog"`|17|`True`|
+|`"quick brown fox"`|`"quick brown fox"`|31|`False`|
+|`"quick brown fox"`|`"lazy dog"`|73|`False`|
 
 |start|end|distance|<= `max_dist`|
 |:-:|:-:|:-:|:-:|
-|||||
-
+|`"lazy dog"`|`"quick brown fox"`|7|`True`|
+|`"lazy dog"`|`"lazy dog"`|49|`False`|
 
 |start|end|distance|<= `max_dist`|
 |:-:|:-:|:-:|:-:|
-|||||
+|`"quick brown fox"`|`"lazy dog"`|28|`False`|
 
+Filtering out all spans that have a distance of more than 20 characters:
+
+|start|end|distance|<= `max_dist`|
+|:-:|:-:|:-:|:-:|
+|`"quick brown fox"`|`"lazy dog"`|17|`True`|
+
+|start|end|distance|<= `max_dist`|
+|:-:|:-:|:-:|:-:|
+|`"lazy dog"`|`"quick brown fox"`|7|`True`|
 
 The final passages should be:
 
 ```
-""
-""
+"quick brown fox jumps over the lazy dog"
+"lazy dog.\nThe quick brown fox"
 ```
