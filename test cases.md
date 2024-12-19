@@ -6,7 +6,8 @@ A running list of test cases that I used to check my code. Skip to:
 - [Passages that are completely contained within other passages](#passages-that-are-completely-contained-within-other-passages)
 - [Multiple passages that could form chains of overlaps](#multiple-passages-that-could-form-chains-of-overlaps)
 - [Repeated passages](#repeated-passages)
-- Empty or whitespace-only passages
+- [Empty passage](#empty-passage)
+- [Whitespace character passages](#whitespace-character-passages)
 - Passages with special characters or formatting
 - Non-existent passages
 - Passages in different orders
@@ -346,7 +347,8 @@ The final passages should be:
 After running this case, I updated the `end_pos` calculation to account for `0`-length strings. 
 
 ```
-"doc"
+document = "doc"
+passages = [""]
 ```
 
 Passages:
@@ -395,4 +397,102 @@ Resulting passages:
 "doc"
 "oc"
 "c"
+```
+
+## Whitespace character passages
+
+```
+document = "This is a\nsample\tdocument with some content."
+passages = [" ", "   ", "\n", "\t"]
+```
+
+Passages:
+
+|passage|start|end|
+|:-:|:-:|:-:|
+|`' '`|4|4|
+|`' '`|7|7|
+|`'\n'`|9|9|
+|`'\t'`|16|16|
+|`' '`|25|25|
+|`' '`|30|30|
+|`' '`|35|35|
+
+Spans:
+
+|start|end|distance|<= `max_dist`|
+|:-:|:-:|:-:|:-:|
+|`' '`|`' '`|3|`True`|
+|`' '`|`'\n'`|5|`True`|
+|`' '`|`'\t'`|12|`True`|
+|`' '`|`' '`|21|`False`|
+|`' '`|`' '`|26|`False`|
+|`' '`|`' '`|31|`False`|
+
+
+|start|end|distance|<= `max_dist`|
+|:-:|:-:|:-:|:-:|
+|`' '`|`'\n'`|2|`True`|
+|`' '`|`'\t'`|9|`True`|
+|`' '`|`' '`|18|`True`|
+|`' '`|`' '`|23|`False`|
+|`' '`|`' '`|28|`False`|
+
+|start|end|distance|<= `max_dist`|
+|:-:|:-:|:-:|:-:|
+|`'\n'`|`'\t'`|7|`True`|
+|`'\n'`|`' '`|16|`True`|
+|`'\n'`|`' '`|21|`False`|
+|`'\n'`|`' '`|26|`False`|
+
+|start|end|distance|<= `max_dist`|
+|:-:|:-:|:-:|:-:|
+|`'\t'`|`' '`|9|`True`|
+|`'\t'`|`' '`|14|`True`|
+|`'\t'`|`' '`|19|`True`|
+
+|start|end|distance|<= `max_dist`|
+|:-:|:-:|:-:|:-:|
+|`' '`|`' '`|5|`True`|
+|`' '`|`' '`|10|`True`|
+
+|start|end|distance|<= `max_dist`|
+|:-:|:-:|:-:|:-:|
+|`' '`|`' '`|5|`True`|
+
+Longest span for each starting passage:
+
+|start|end|distance|<= `max_dist`|
+|:-:|:-:|:-:|:-:|
+|`' '`|`'\t'`|12|`True`|
+
+|start|end|distance|<= `max_dist`|
+|:-:|:-:|:-:|:-:|
+|`' '`|`' '`|18|`True`|
+
+|start|end|distance|<= `max_dist`|
+|:-:|:-:|:-:|:-:|
+|`'\n'`|`' '`|16|`True`|
+
+|start|end|distance|<= `max_dist`|
+|:-:|:-:|:-:|:-:|
+|`'\t'`|`' '`|19|`True`|
+
+|start|end|distance|<= `max_dist`|
+|:-:|:-:|:-:|:-:|
+|`' '`|`' '`|10|`True`|
+
+|start|end|distance|<= `max_dist`|
+|:-:|:-:|:-:|:-:|
+|`' '`|`' '`|5|`True`|
+
+Resulting passages:
+
+```
+" is a\nsample\t"
+" a\nsample\tdocument "
+"\nsample\tdocument "
+"\tdocument with some "
+" with some "
+" some "
 ```
