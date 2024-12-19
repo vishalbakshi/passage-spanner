@@ -571,10 +571,20 @@ Passages:
 
 |passage|start|end|
 |:-:|:-:|:-:|
-|`"The sky is blue."`|0||
-|`"The grass is green."`|17||
+|`"The sky is blue."`|0|15|
+|`"The grass is green."`|17|35|
 |`"This passage is not in the document."`|-1||
-|`"The sun is yellow."`|37||
-|`"The rose is red."`|56||
-|`"The cloud is white."`|73||
+|`"The sun is yellow."`|37|54|
+|`"The rose is red."`|56|71|
+|`"The cloud is white."`|73|91|
 |`"This passage is also not in the document."`|-1||
+
+
+Spans:
+
+|start|end|distance|<= `max_dist`|
+|:-:|:-:|:-:|:-:|
+|`"The sky is blue."`|`"The grass is green."`|2|`True`
+|`"The sky is blue."`|`"The sun is yellow."`|22|`False`
+|`"The sky is blue."`|`"The rose is red."`|41|`False`
+|`"The sky is blue."`|`"The cloud is white."`|58|`False`
