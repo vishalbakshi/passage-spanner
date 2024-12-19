@@ -5,6 +5,11 @@ A running list of test cases that I used to check my code. Skip to:
 - [Passages that partially overlap](#passages-that-partially-overlap)
 - [Passages that are completely contained within other passages](#passages-that-are-completely-contained-within-other-passages)
 - [Multiple passages that could form chains of overlaps](#multiple-passages-that-could-form-chains-of-overlaps)
+- Passages that appear multiple times in the document
+- Empty or whitespace-only passages
+- Passages with special characters or formatting
+- Non-existent passages
+- Passages in different orders
 
 ### Passages that partially overlap
 
