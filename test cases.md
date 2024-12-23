@@ -629,5 +629,23 @@ Final result:
 "The grass is green.\nThe sun is yellow."
 "The sun is yellow.\nThe rose is red.\nThe cloud is white."
 "The rose is red.\nThe cloud is white."
-
 ```
+
+### Passages in different orders
+
+```python
+document = "The quick brown fox jumps over the lazy dog. The dog sleeps while the fox hunts."
+passages = ["fox", "dog", "quick", "sleeps"]
+```
+
+Passages:
+
+|passage|start|end|
+|:-:|:-:|:-:|
+||||
+
+Spans:
+
+|start|end|distance|<= `max_dist`|
+|:-:|:-:|:-:|:-:|
+|||||
