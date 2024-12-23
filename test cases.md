@@ -670,3 +670,39 @@ Spans:
 |`"dog"`|`"dog"`|7|`True`|
 |`"dog"`|`"sleeps"`|11|`True`|
 |`"dog"`|`"fox"`|28|`False`|
+
+|start|end|distance|<= `max_dist`|
+|:-:|:-:|:-:|:-:|
+|`"dog"`|`"sleeps"`|2|`True`|
+|`"dog"`|`"fox"`|19|`True`|
+
+|start|end|distance|<= `max_dist`|
+|:-:|:-:|:-:|:-:|
+|`"sleeps"`|`"fox"`|12|`True`|
+
+Largest Spans for each starting Passage that are under `max_dist`:
+
+|start|end|distance|<= `max_dist`|
+|:-:|:-:|:-:|:-:|
+|`"quick"`|`"fox"`|8|`True`|
+
+|start|end|distance|<= `max_dist`|
+|:-:|:-:|:-:|:-:|
+|`"dog"`|`"sleeps"`|11|`True`|
+
+|start|end|distance|<= `max_dist`|
+|:-:|:-:|:-:|:-:|
+|`"dog"`|`"fox"`|19|`True`|
+
+|start|end|distance|<= `max_dist`|
+|:-:|:-:|:-:|:-:|
+|`"sleeps"`|`"fox"`|12|`True`|
+
+Final result:
+
+```
+"quick brown fox"
+"dog. The dog sleeps"
+"dog sleeps while the fox"
+"sleeps while the fox"
+```
