@@ -657,3 +657,16 @@ Spans:
 |`"quick"`|`"dog"`|41|`False`|
 |`"quick"`|`"sleeps"`|45|`False`|
 |`"quick"`|`"fox"`|62|`False`|
+
+|start|end|distance|<= `max_dist`|
+|:-:|:-:|:-:|:-:|
+|`"fox"`|`"dog"`|22|`False`|
+|`"fox"`|`"dog"`|31|`False`|
+|`"fox"`|`"sleeps"`|35|`False`|
+|`"fox"`|`"fox"`|52|`False`|
+
+|start|end|distance|<= `max_dist`|
+|:-:|:-:|:-:|:-:|
+|`"dog"`|`"dog"`|7|`True`|
+|`"dog"`|`"sleeps"`|11|`True`|
+|`"dog"`|`"fox"`|28|`False`|
