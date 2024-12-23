@@ -637,15 +637,23 @@ Final result:
 document = "The quick brown fox jumps over the lazy dog. The dog sleeps while the fox hunts."
 passages = ["fox", "dog", "quick", "sleeps"]
 ```
-
 Passages:
 
 |passage|start|end|
 |:-:|:-:|:-:|
-||||
+|`"quick"`|4|8|
+|`"fox"`|16|18|
+|`"dog"`|40|42|
+|`"dog"`|49|51|
+|`"sleeps"`|53|58|
+|`"fox"`|70|72|
 
 Spans:
 
 |start|end|distance|<= `max_dist`|
 |:-:|:-:|:-:|:-:|
-|||||
+|`"quick"`|`"fox"`|8|`True`|
+|`"quick"`|`"dog"`|32|`False`|
+|`"quick"`|`"dog"`|41|`False`|
+|`"quick"`|`"sleeps"`|45|`False`|
+|`"quick"`|`"fox"`|62|`False`|
