@@ -9,7 +9,7 @@ A running list of test cases that I used to check my code. Skip to:
 - [Whitespace character passages](#whitespace-character-passages)
 - [Passages with special characters or formatting](#passages-with-special-characters-or-formatting)
 - [Non-existent passages](#non-existent-passages)
-- Passages in different orders (TBD)
+- [Passages in different orders](#passages-in-different-orders)
 
 `max_dist` = 20.
 
