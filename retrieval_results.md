@@ -9,7 +9,7 @@ This file contains the definition of expected results for a sample of retrieved 
 - [Chapter 13 Question 17](#chapter-13-question-17)
 
 
-`max_dist` = 2000.
+`max_dist` = 2000 (assuming ~4 characters per token. My 1910 ~500 token retrieved passages average about 2000 characters each).
 
 ## Chapter 1 Question 20 
 ([top](#table-of-contents))
