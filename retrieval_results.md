@@ -1,6 +1,10 @@
 This file contains the definition of expected results for a sample of retrieved passages using answerai-colbert-small-v1. The passages are identified by their rank (starting at 1) in the top-10 retrieved passages for that question. Note that the "document" in each case is the chapter notebook converted into a string. 
 
+- [Chapter 1 Question 20](#chapter-1-question-20)
+- [Chapter 2 Question 22](#chapter-2-question-22)
+- 
 
+  
 ## Chapter 1 Question 20
 
 |Passage Rank|Start|End|
