@@ -209,3 +209,57 @@ This file contains the definition of expected results for a sample of retrieved 
 **Relevant passage(s)**
 
 `[Passage 1]`"If you do need this functionality, you can use a tool such as Microsoft's [ONNX Runtime](https://github.com/microsoft/onnxruntime), or [AWS Sagemaker](https://aws.amazon.com/sagemaker/)\n- The complexities of dealing with GPU inference are significant. <mark>In particular, the GPU's memory will need careful manual management, and you'll need a careful queueing system to ensure you only process one batch at a time</mark>.\n- There's a lot more market competition in CPU than GPU servers, as a result of which there are much cheaper options available for CPU servers.\n\nBecause of the complexity of GPU serving, many systems have sprung up to try to automate this. However, managing and running these systems is also complex, and generally requires compiling your model into a different form that's specialized for that system. It's typically preferable to avoid dealing with this complexity until/unless your app gets popular enough that it makes clear financial sense for you to do so.\nFor at least the initial prototype of your application, and for any hobby projects that you want to show off, you can easily host them for free. The best place and the best way to do this will vary over time, so check the [book's website](https://book.fast.ai/) for the most up-to-date recommendations. As we're writing this book in early 2020 the simplest (and free!) approach is to use [Binder](https://mybinder.org/). To publish your web app on Binder, you follow these steps:\n\n1. Add your notebook to a [GitHub repository](http://github.com/).\n2. Paste the URL of that repo into Binder's URL, as shown in <<deploy-binder>>.\n3. Change the File dropdown to instead select URL.\n4. In the \"URL to open\" field, enter `/voila/render/name.ipynb` (replacing `name` with the name of for your notebook).\n5. Click the clickboard button at the bottom right to copy the URL and paste it somewhere safe. \n6. Click Launch.\n<img alt=\"Deploying to Binder\" width=\"800\" caption=\"Deploying to Binder\" id=\"deploy-binder\" src=\"images/att_00001.png\">\nThe first time you do this, Binder will take around 5 minutes to build your site."
+
+## Chapter 4 Question 20
+
+**Answer component**: 
+
+"A loss function needs to change as the weights are being adjusted"
+
+**Contexts**
+
+"we need a loss function which, when our weights result in slightly better predictions, gives us a slightly better loss"
+
+---
+
+**Answer component**: 
+
+"Accuracy only changes if the predictions of the model change. So if there are slight changes to the model that, say, improves confidence in a prediction, but does not change the prediction, the accuracy will still not change. Therefore, the gradients will be zero everywhere except when the actual predictions change"
+
+**Contexts**
+
+"But accuracy only changes at all when a prediction changes from a 3 to a 7, or vice versa. The problem is that a small change in weights from `x_old` to `x_new` isn't likely to cause any prediction to change, so `(y_new - y_old)` will almost always be 0. In other words, the gradient is 0 almost everywhere"
+
+"A very small change in the value of a weight will often not actually change the accuracy at all. This means it is not useful to use accuracy as a loss function—if we do, most of the time our gradients will actually be 0"
+
+---
+
+**Answer component**: 
+
+"The model therefore cannot learn from the gradients equal to zero, and the model's weights will not update and will not train"
+
+**Contexts**
+
+"this means it is not useful to use accuracy as a loss function—if we do, most of the time our gradients will actually be 0, and the model will not be able to learn from that number"
+
+"In mathematical terms, accuracy is a function that is constant almost everywhere (except at the threshold, 0.5), so its derivative is nil almost everywhere (and infinity at the threshold). This then gives gradients that are 0 or infinite, which are useless for updating the model."
+
+---
+
+**Answer component**: 
+
+"A good loss function gives a slightly better loss when the model gives slightly better predictions"
+
+**Contexts**
+
+"Instead, we need a loss function which, when our weights result in slightly better predictions, gives us a slightly better loss"
+
+---
+
+**Answer component**: 
+
+"Slightly better predictions mean if the model is more confident about the correct prediction"
+
+**Contexts**
+
+"You can see that this function returns a lower number when predictions are more accurate, when accurate predictions are more confident (higher absolute values), and when inaccurate predictions are less confident"
