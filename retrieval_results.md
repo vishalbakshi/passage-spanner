@@ -8,7 +8,9 @@ This file contains the definition of expected results for a sample of retrieved 
 - [Chapter 10 Question 6](#chapter-10-question-6)
 - [Chapter 13 Question 17](#chapter-13-question-17)
 
-  
+
+`max_dist` = 2000.
+
 ## Chapter 1 Question 20 
 ([top](#table-of-contents))
 
