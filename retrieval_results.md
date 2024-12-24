@@ -1,7 +1,24 @@
-This file contains the definition of expected results for a sample of retrieved passages using answerai-colbert-small-v1. The passages are identified by their rank (starting at 1) in the top-10 retrieved passages for that question.
+This file contains the definition of expected results for a sample of retrieved passages using answerai-colbert-small-v1. The passages are identified by their rank (starting at 1) in the top-10 retrieved passages for that question. Note that the "document" in each case is the chapter notebook converted into a string. 
 
 
 ## Chapter 1 Question 20
+
+
+|Passage Rank|Start|End|
+|:-:|:-:|:-:|
+|10|61090|63395|
+|4|97959|100302|
+|3|100094|102557|
+|1|102340|104684|
+
+|Start Passage|End Passage|Distance|
+|:-:|:-:|:-:|
+|10|4|34564|
+|10|3|36699|
+|10|1|38945|
+|4|3|-208|
+|4|1|2038|
+|3|1|-217|
 
 **Answer component**
 
