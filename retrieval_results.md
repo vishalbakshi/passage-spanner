@@ -7,7 +7,8 @@ This file contains the definition of expected results for a sample of retrieved 
 - 
 
   
-## Chapter 1 Question 20 ([top](#table-of-contents))
+## Chapter 1 Question 20 
+([top](#table-of-contents))
 
 |Passage Rank|Start|End|
 |:-:|:-:|:-:|
@@ -111,7 +112,8 @@ This file contains the definition of expected results for a sample of retrieved 
 
 `[Passage 1]`"The test and validation sets should have enough data to ensure that you get a good estimate of your accuracy. If you're creating a cat detector, for instance, you generally want at least 30 cats in your validation set. That means that if you have a dataset with thousands of items, using the default 20% validation set size may be more than you need. On the other hand, if you have lots of data, using some of it for validation probably doesn't have any downsides.\n\n<mark>Having two levels of \"reserved data\"\u2014a validation set and a test set, with one level representing data that you are virtually hiding from yourself\u2014may seem a bit extreme. But the reason it is often necessary is because models tend to gravitate toward the simplest way to do good predictions (memorization), and we as fallible humans tend to gravitate toward fooling ourselves about how well our models are performing. The discipline of the test set helps us keep ourselves intellectually honest. That doesn't mean we *always* need a separate test set\u2014if you have very little data, you may need to just have a validation set\u2014but generally it's best to use one if at all possible.</mark>\n\nThis same discipline can be critical if you intend to hire a third party to perform modeling work on your behalf. A third party might not understand your requirements accurately, or their incentives might even encourage them to misunderstand them. A good test set can greatly mitigate these risks and let you evaluate whether their work solves your actual problem.\n\nTo put it bluntly, if you're a senior decision maker in your organization (or you're advising senior decision makers), the most important takeaway is this: if you ensure that you really understand what test and validation sets are and why they're important, then you'll avoid the single biggest source of failures we've seen when organizations decide to use AI. For instance, if you're considering bringing in an external vendor or service, make sure that you hold out some test data that the vendor *never gets to see*. Then *you* check their model on your test data, using a metric that *you* choose based on what actually matters to you in practice, and *you* decide what level of performance is adequate. (It's also a good idea for you to try out some simple baseline yourself, so you know what a really simple model can achieve."
 
-## Chapter 2 Question 22 ([top](#table-of-contents))
+## Chapter 2 Question 22 
+([top](#table-of-contents))
 
 |Passage Rank|Start|End|
 |:-:|:-:|:-:|
