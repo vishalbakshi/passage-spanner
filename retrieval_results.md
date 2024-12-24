@@ -295,6 +295,18 @@ This file contains the definition of expected results for a sample of retrieved 
 
 ## Chapter 10 Question 6
 
+|Passage Rank|Start|End|
+|:-:|:-:|:-:|
+|9|1888|4199|
+|1|24952|27045|
+|6|32454|34241|
+
+|Start Passage|End Passage|Distance|
+|:-:|:-:|:-:|
+|9|1|20753|
+|9|6|28255|
+|1|6|5409|
+
 **Answer component**: 
 
 "Train a language model on a large corpus of text (already done for ULM-FiT by Sebastian Ruder and Jeremy!)"
