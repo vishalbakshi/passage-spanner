@@ -292,3 +292,39 @@ This file contains the definition of expected results for a sample of retrieved 
 **Relevant passage(s)**
 
 `[Passage 9]`"It is also a vector (i.e., another rank-1 tensor), indexed over the images.\n\nSo, for instance, suppose we had three images which we knew were a 3, a 7, and a 3. And suppose our model predicted with high confidence (`0.9`) that the first was a 3, with slight confidence (`0.4`) that the second was a 7, and with fair confidence (`0.2`), but incorrectly, that the last was a 7. This would mean our loss function would receive these values as its inputs:\ntrgts  = tensor([1,0,1])\nprds   = tensor([0.9, 0.4, 0.2])\nHere's a first try at a loss function that measures the distance between `predictions` and `targets`:\ndef mnist_loss(predictions, targets):\n    return torch.where(targets==1, 1-predictions, predictions).mean()\nWe're using a new function, `torch.where(a,b,c)`. This is the same as running the list comprehension `[b[i] if a[i] else c[i] for i in range(len(a))]`, except it works on tensors, at C/CUDA speed. In plain English, this function will measure how distant each prediction is from 1 if it should be 1, and how distant it is from 0 if it should be 0, and then it will take the mean of all those distances.\n\n> note: Read the Docs: It's important to learn about PyTorch functions like this, because looping over tensors in Python performs at Python speed, not C/CUDA speed! Try running `help(torch.where)` now to read the docs for this function, or, better still, look it up on the PyTorch documentation site.\nLet's try it on our `prds` and `trgts`:\ntorch.where(trgts==1, 1-prds, prds)\n<mark>You can see that this function returns a lower number when predictions are more accurate, when accurate predictions are more confident (higher absolute values), and when inaccurate predictions are less confident</mark>. In PyTorch, we always assume that a lower value of a loss function is better."
+
+## Chapter 10 Question 6
+
+**Answer component**: 
+
+"Train a language model on a large corpus of text (already done for ULM-FiT by Sebastian Ruder and Jeremy!)"
+
+**Contexts**
+
+"The language model we used in <<chapter_intro>> to classify IMDb reviews was pretrained on Wikipedia."
+
+---
+
+**Answer component**: 
+
+"Fine-tune the language model on text classification dataset"
+
+**Contexts**
+
+"first we need to fine-tune our language model pretrained on Wikipedia to the corpus of IMDb reviews"
+
+"The Wikipedia English is slightly different from the IMDb English, so instead of jumping directly to the classifier, we could fine-tune our pretrained language model to the IMDb corpus"
+
+---
+
+**Answer component**: 
+
+"Fine-tune the language model as a text classifier instead"
+
+**Contexts**
+
+"and then we can use that model to train a classifier"
+
+"then use *that* as the base for our classifier"
+
+"We're now moving from language model fine-tuning to classifier fine-tuning. To recap, a language model predicts the next word of a document, so it doesn't need any external labels. A classifier, however, predicts some external label—in the case of IMDb, it's the sentiment of a document"
