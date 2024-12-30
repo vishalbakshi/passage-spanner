@@ -131,5 +131,5 @@ The first and last few characters for each span:
 |1|4|`'The problem is that a sma...why did we define a loss?'`
 |9|2|`'It is also a vector (i.e....ance on that single item.'`
 |4|2|`'In PyTorch, we always ass...ance on that single item.'`
-|5|7|
-|10|7|
+|5|7|`'This is known as the *uni...l contained in *tensors*.'`
+|10|7|`'A function that can solve...l contained in *tensors*.'`
