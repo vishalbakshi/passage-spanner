@@ -165,3 +165,37 @@ The first and last few characters for each span:
 |10|4|`"Since `fine_tune` doesn't...g the first 10 documents."`
 |6|4|`'We can now use it to fine...g the first 10 documents.'`
 |4|3|`'A classifier, however, pr...nce just three years ago.'`
+
+## Chapter 13 Question 17
+([top](#table-of-contents))
+
+|Passage Rank|Start|End|
+|:-:|:-:|:-:|
+|9|11835|13854
+|5|13697|15391
+|3|18723|20684
+|8|20516|22328
+|4|22104|23974
+|2|23818|25854
+|1|25685|26910
+|6|34168|36104
+|10|35809|37721
+|7|49708|52032
+
+|Start Passage|End Passage|Distance|
+|:-:|:-:|:-:|
+|9|5|-157
+|3|4|1420
+|8|2|1490
+|4|1|1711
+|2|1|-169
+|6|10|-295
+
+|Start Passage|End Passage|Sample Text|
+|:-:|:-:|:-:|
+|9|5|`'We can see we get the sam...oing to show it here too!'`
+|3|4|`"That's because a linear l...d less as it gets deeper."`
+|8|2|`'_Features_ is never used ...since we have two layers.'`
+|4|1|`'### Understanding Convolu...or images.\n### A Note Abo'`
+|2|1|`'If we left the number of ...or images.\n### A Note Abo'`
+|6|10|`"We did do that in the `ge...well! Let's find out why."`
