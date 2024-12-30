@@ -67,7 +67,6 @@ Looking at the first and last few characters for each span:
 ## Chapter 2 Question 22 
 ([top](#table-of-contents))
 
-
 |Passage Rank|Start|End|
 |:-:|:-:|:-:|
 |9|1895|4355|
@@ -88,6 +87,7 @@ Identifying passages at or below 2000 characters apart, keeping the longest span
 |2|4|1619
 |1|5|1840
 |4|3|1952
+|5|3|-249
 |3|6|1882
 
 The first and last few characters for each span:
@@ -97,4 +97,39 @@ The first and last few characters for each span:
 |2|4|`"So what's left is a web a,,,downsides too, of course."`
 |1|5|`'If you do need this funct...nally find is easy to do.'`
 |4|3|`'6. Click Launch.\n<img alt...s can result in disaster!'`
+|5|3|`'The hardware that you wil...s can result in disaster!'`
 |3|6|`"It's still not easy but i...should be very concerned."`
+
+## Chapter 2 Question 22 
+([top](#table-of-contents))
+
+|Passage Rank|Start|End|
+|:-:|:-:|:-:|
+|8|38802|41020
+|6|49370|51048
+|3|60664|62661
+|1|62499|64378
+|9|64219|66008
+|4|65932|67812
+|2|67535|69795
+|5|83123|85040
+|10|84919|87167
+|7|86843|89207
+
+|Start Passage|End Passage|Distance|
+|:-:|:-:|:-:|
+|3|9|1558
+|1|4|1554
+|9|2|1527
+|4|2|-277
+|5|7|1803
+|10|7|-324
+
+|Start Passage|End Passage|Sample Text|
+|:-:|:-:|:-:|
+|3|9|`"Let's check our accuracy....loss function is better."`
+|1|4|`'The problem is that a sma...why did we define a loss?'`
+|9|2|`'It is also a vector (i.e....ance on that single item.'`
+|4|2|`'In PyTorch, we always ass...ance on that single item.'`
+|5|7|
+|10|7|
