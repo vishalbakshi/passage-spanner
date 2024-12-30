@@ -85,17 +85,16 @@ Identifying passages at or below 2000 characters apart, keeping the longest span
 
 |Start Passage|End Passage|Distance|
 |:-:|:-:|:-:|
-|2|4|1619|
+|2|4|1619
 |1|5|1840
 |4|3|1952
 |3|6|1882
 
 The first and last few characters for each span:
 
-
 |Start Passage|End Passage|Sample Text|
 |:-:|:-:|:-:|
-|2|4|
-|1|5|
-|4|3|
-|3|6|
+|2|4|`"So what's left is a web a,,,downsides too, of course."`
+|1|5|`'If you do need this funct...nally find is easy to do.'`
+|4|3|`'6. Click Launch.\n<img alt...s can result in disaster!'`
+|3|6|`"It's still not easy but i...should be very concerned."`
