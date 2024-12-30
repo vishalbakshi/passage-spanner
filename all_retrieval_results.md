@@ -160,8 +160,8 @@ The first and last few characters for each span:
 
 |Start Passage|End Passage|Sample Text|
 |:-:|:-:|:-:|
-|9|5|``
-|7|5|``
-|10|4|``
-|6|4|``
-|4|3|``
+|9|5|`'The Wikipedia English is ...s from many, many pieces?'`
+|7|5|`'Using this approach, we h...s from many, many pieces?'`
+|10|4|`"Since `fine_tune` doesn't...g the first 10 documents."`
+|6|4|`'We can now use it to fine...g the first 10 documents.'`
+|4|3|`'A classifier, however, pr...nce just three years ago.'`
