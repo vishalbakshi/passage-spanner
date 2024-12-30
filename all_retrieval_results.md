@@ -100,7 +100,7 @@ The first and last few characters for each span:
 |5|3|`'The hardware that you wil...s can result in disaster!'`
 |3|6|`"It's still not easy but i...should be very concerned."`
 
-## Chapter 2 Question 22 
+## Chapter 4 Question 20 
 ([top](#table-of-contents))
 
 |Passage Rank|Start|End|
@@ -133,3 +133,35 @@ The first and last few characters for each span:
 |4|2|`'In PyTorch, we always ass...ance on that single item.'`
 |5|7|`'This is known as the *uni...l contained in *tensors*.'`
 |10|7|`'A function that can solve...l contained in *tensors*.'`
+
+## Chapter 10 Question 6 
+([top](#table-of-contents))
+
+|Passage Rank|Start|End|
+|:-:|:-:|:-:|
+|9|1888|4199
+|7|4092|6258
+|5|6061|8341
+|8|19172|21234
+|1|24952|27045
+|10|30794|32681
+|6|32454|34241
+|4|34038|35778
+|3|37587|39404
+|2|43353|44284
+
+|Start Passage|End Passage|Distance|
+|:-:|:-:|:-:|
+|9|5|1862
+|7|5|-197
+|10|4|1357
+|6|4|-203
+|4|3|1809
+
+|Start Passage|End Passage|Sample Text|
+|:-:|:-:|:-:|
+|9|5|``
+|7|5|``
+|10|4|``
+|6|4|``
+|4|3|``
