@@ -3,11 +3,11 @@
 A running list of test cases that I used to check my code. Skip to:
 - [Passages that partially overlap](#passages-that-partially-overlap)
 - [Multiple passages that could form chains of overlaps](#multiple-passages-that-could-form-chains-of-overlaps)
-- [Passages that are completely contained within other passages](#passages-that-are-completely-contained-within-other-passages)
 - [Repeated passages](#repeated-passages)
 - [Empty passage](#empty-passage)
 - [Whitespace character passages](#whitespace-character-passages)
 - [Passages with special characters or formatting](#passages-with-special-characters-or-formatting)
+- [Passages that are completely contained within other passages](#passages-that-are-completely-contained-within-other-passages)
 - [Non-existent passages](#non-existent-passages)
 - [Passages in different orders](#passages-in-different-orders)
 
