@@ -132,6 +132,7 @@ Since the final span has a highest rank of 1, it should be the first text in the
 ```
 
 ### Multiple passages that could form chains of overlaps
+[top](#test-cases)
 
 ```
 """Once upon a time, a magical crystal glowed brightly.
@@ -237,6 +238,7 @@ The final texts should be as followed (no unused passages):
 ```
 
 ### Repeated passages
+[top](#test-cases)
 
 Building out this test made me realize that I needed to find all occurences of a passage in a document (`document.find` only returns the first occurence) so I used `regex.finditer`.
 
@@ -290,6 +292,7 @@ The final passages should be:
 ```
 
 ### Empty passage
+[top](#test-cases)
 
 After running this case, I updated the `end_pos` calculation to account for `0`-length strings. 
 
@@ -347,6 +350,7 @@ Resulting passages:
 ```
 
 ## Whitespace character passages
+[top](#test-cases)
 
 ```
 document = "This is a\nsample\tdocument with some content."
@@ -445,6 +449,7 @@ Resulting passages:
 ```
 
 ### Passages with special characters or formatting
+[top](#test-cases)
 
 ```
 document = """Special *formatting* and (punctuation) test!
@@ -488,6 +493,7 @@ Spans:
 All spans are greater than `max_dist` so there is no text extracted from the document.
 
 ### Passages that are completely contained within other passages
+[top](#test-cases)
 
 ```
 """The majestic unicorn galloped through the enchanted forest.
@@ -558,6 +564,7 @@ The final passages should be:
 ```
 
 ### Non-existent passages
+[top](#test-cases)
 
 ```
 document = """The sky is blue.
@@ -642,6 +649,7 @@ Final result:
 ```
 
 ### Passages in different orders
+[top](#test-cases)
 
 ```python
 document = "The quick brown fox jumps over the lazy dog. The dog sleeps while the fox hunts."
