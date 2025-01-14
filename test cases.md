@@ -14,6 +14,7 @@ A running list of test cases that I used to check my code. Skip to:
 `max_dist` = 20.
 
 ### Passages that partially overlap
+[top](#test-cases)
 
 ```
 document = """The quick brown fox jumps over the lazy dog.
