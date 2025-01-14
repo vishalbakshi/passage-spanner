@@ -240,8 +240,6 @@ The final texts should be as followed (no unused passages):
 ### Repeated passages
 [top](#test-cases)
 
-Building out this test made me realize that I needed to find all occurences of a passage in a document (`document.find` only returns the first occurence) so I used `regex.finditer`.
-
 ```
 """The quick brown fox jumps over the lazy dog.
 The quick brown fox runs through the field.
@@ -250,39 +248,37 @@ A lazy dog sleeps in the sun."""
 
 Passages:
 
-|passage|start|end|
-|:-:|:-:|:-:|
-|`"quick brown fox"`|4|18|
-|`"lazy dog"`|35|42|
-|`"quick brown fox"`|49|63|
-|`"lazy dog"`|91|98|
+```
+passages = [
+    "quick brown fox",  # Appears twice
+    "lazy dog"          # Appears twice
+]
+```
+
+|rank|passage|start_pos|end_pos|
+|:-:|:-:|:-:|:-:|
+|1|`"quick brown fox"`|4|18|
+|2|`"lazy dog"`|35|42|
+|1|`"quick brown fox"`|49|63|
+|2|`"lazy dog"`|91|98|
 
 Spans:
 
-|start|end|distance|<= `max_dist`|
+|start rank|end rank|distance|<= `max_dist`|
 |:-:|:-:|:-:|:-:|
-|`"quick brown fox"`|`"lazy dog"`|17|`True`|
-|`"quick brown fox"`|`"quick brown fox"`|31|`False`|
-|`"quick brown fox"`|`"lazy dog"`|73|`False`|
+|1|2|17|`True`|
+|1|1|31|`False`|
+|1|2|73|`False`|
+|2|1|7|`True`|
+|2|2|49|`False`|
+|1|2|28|`False`|
 
-|start|end|distance|<= `max_dist`|
+Filtering out all spans that have a distance of more than `max_dist`:
+
+|start rank|end rank|distance|<= `max_dist`|
 |:-:|:-:|:-:|:-:|
-|`"lazy dog"`|`"quick brown fox"`|7|`True`|
-|`"lazy dog"`|`"lazy dog"`|49|`False`|
-
-|start|end|distance|<= `max_dist`|
-|:-:|:-:|:-:|:-:|
-|`"quick brown fox"`|`"lazy dog"`|28|`False`|
-
-Filtering out all spans that have a distance of more than 20 characters:
-
-|start|end|distance|<= `max_dist`|
-|:-:|:-:|:-:|:-:|
-|`"quick brown fox"`|`"lazy dog"`|17|`True`|
-
-|start|end|distance|<= `max_dist`|
-|:-:|:-:|:-:|:-:|
-|`"lazy dog"`|`"quick brown fox"`|7|`True`|
+|1|2|17|`True`|
+|2|1|7|`True`|
 
 The final passages should be:
 
