@@ -2,8 +2,8 @@
 
 A running list of test cases that I used to check my code. Skip to:
 - [Passages that partially overlap](#passages-that-partially-overlap)
-- [Passages that are completely contained within other passages](#passages-that-are-completely-contained-within-other-passages)
 - [Multiple passages that could form chains of overlaps](#multiple-passages-that-could-form-chains-of-overlaps)
+- [Passages that are completely contained within other passages](#passages-that-are-completely-contained-within-other-passages)
 - [Repeated passages](#repeated-passages)
 - [Empty passage](#empty-passage)
 - [Whitespace character passages](#whitespace-character-passages)
@@ -130,6 +130,111 @@ Since the final span has a highest rank of 1, it should be the first text in the
 "sleeping hound.\nThe nimble"
 ```
 
+### Multiple passages that could form chains of overlaps
+
+```
+"""Once upon a time, a magical crystal glowed brightly.
+Its light danced across the ancient cavern walls.
+Deep within, secrets waited to be discovered."""
+```
+
+Passages:
+
+|rank|passage|start_pos|end_pos|
+|:-:|:-:|:-:|:-:|
+|1|`"magical crystal"`|20|34|
+|2|`"crystal glowed"`|28|41|
+|3|`"glowed brightly"`|36|50|
+|4|`"brightly.\nIts light"`|43|61|
+|5|`"light danced"`|57|68|
+|6|`"Deep within"`|103|113|
+|7|`"to be discovered"`|131|146|
+
+Spans:
+
+|start rank|end rank|distance|<= `max_dist`|
+|:-:|:-:|:-:|:-:|
+|1|2|-6|`True`|
+|1|3|2|`True`|
+|1|4|9|`True`|
+|1|5|23|`False`|
+|1|6|69|`False`|
+|1|7|97|`False`|
+|2|3|-5|`True`|
+|2|4|2|`True`|
+|2|5|16|`True`|
+|2|6|62|`False`|
+|2|7|90|`False`|
+|3|4|-7|`True`|
+|3|5|7|`True`|
+|3|6|53|`False`|
+|3|7|81|`False`|
+|4|5|-4|`True`|
+|4|6|42|`False`|
+|4|7|70|`False`|
+|5|6|35|`False`|
+|5|7|63|`False`|
+|6|7|18|`True`|
+
+Filtering out all spans that have a distance of more than `max_dist` (20 chars):
+
+|start rank|end rank|start.start_pos|end.end_pos|
+|:-:|:-:|:-:|:-:|
+|1|2|20|41
+|1|3|20|50
+|1|4|20|61
+|2|3|28|50
+|2|4|28|61
+|2|5|28|68
+|3|4|36|61
+|3|5|36|68
+|4|5|43|68
+|6|7|103|146
+
+grouping by ending passage end position and keeping the span with the smallest start.start_pos:
+
+|start rank|end rank|start.start_pos|end.end_pos|
+|:-:|:-:|:-:|:-:|
+|1|2|20|41
+
+|start rank|end rank|start.start_pos|end.end_pos|
+|:-:|:-:|:-:|:-:|
+|1|3|20|50
+
+|start rank|end rank|start.start_pos|end.end_pos|
+|:-:|:-:|:-:|:-:|
+|1|4|20|61
+
+|start rank|end rank|start.start_pos|end.end_pos|
+|:-:|:-:|:-:|:-:|
+|2|5|28|68
+
+|start rank|end rank|start.start_pos|end.end_pos|
+|:-:|:-:|:-:|:-:|
+|6|7|103|146
+
+grouping by start.start_pos and keeping the span with the largest end.end_pos:
+
+|start rank|end rank|start.start_pos|end.end_pos|
+|:-:|:-:|:-:|:-:|
+|1|4|20|61
+
+|start rank|end rank|start.start_pos|end.end_pos|
+|:-:|:-:|:-:|:-:|
+|2|5|28|68
+
+|start rank|end rank|start.start_pos|end.end_pos|
+|:-:|:-:|:-:|:-:|
+|6|7|103|146
+
+The final texts should be as followed (no unused passages):
+
+```
+"magical crystal glowed brightly.\nIts light"
+"crystal glowed brightly.\nIts light danced"
+"Deep within, secrets waited to be discovered"
+```
+
 ### Passages that are completely contained within other passages
 
 ```
@@ -199,90 +304,6 @@ The final passages should be:
 "galloped through the enchanted forest.\nIts rainbow"
 "the enchanted forest.\nIts rainbow mane"
 ```
-
-### Multiple passages that could form chains of overlaps
-
-```
-"""Once upon a time, a magical crystal glowed brightly.
-Its light danced across the ancient cavern walls.
-Deep within, secrets waited to be discovered."""
-```
-
-Passages:
-
-|passage|start|end|
-|:-:|:-:|:-:|
-|`"magical crystal"`|20|34|
-|`"crystal glowed"`|28|41|
-|`"glowed brightly"`|36|50|
-|`"brightly.\nIts light"`|43|61|
-|`"light danced"`|57|68|
-|`"Deep within"`|103|113|
-|`"to be discovered"`|131|146|
-
-Spans:
-
-|start|end|distance|<= `max_dist`|
-|:-:|:-:|:-:|:-:|
-|`"magical crystal"`|`"crystal glowed"`|-6|`True`|
-|`"magical crystal"`|`"glowed brightly"`|2|`True`|
-|`"magical crystal"`|`"brightly.\nIts light"`|9|`True`|
-|`"magical crystal"`|`"light danced"`|23|`False`|
-|`"magical crystal"`|`"Deep within"`|69|`False`|
-|`"magical crystal"`|`"to be discovered"`|97|`False`|
-|`"crystal glowed"`|`"glowed brightly"`|-5|`True`|
-|`"crystal glowed"`|`"brightly.\nIts light"`|2|`True`|
-|`"crystal glowed"`|`"light danced"`|16|`True`|
-|`"crystal glowed"`|`"Deep within"`|62|`False`|
-|`"crystal glowed"`|`"to be discovered"`|90|`False`|
-|`"glowed brightly"`|`"brightly.\nIts light"`|-7|`True`|
-|`"glowed brightly"`|`"light danced"`|7|`True`|
-|`"glowed brightly"`|`"Deep within"`|53|`False`|
-|`"glowed brightly"`|`"to be discovered"`|81|`False`|
-|`"brightly.\nIts light"`|`"light danced"`|-4|`True`|
-|`"brightly.\nIts light"`|`"Deep within"`|42|`False`|
-|`"brightly.\nIts light"`|`"to be discovered"`|70|`False`|
-|`"light danced"`|`"Deep within"`|35|`False`|
-|`"light danced"`|`"to be discovered"`|63|`False`|
-|`"Deep within"`|`"to be discovered"`|18|`True`|
-
-Filtering out all spans that have a distance of more than 20 characters and grouping by first passage:
-
-|start|end|distance|<= `max_dist`|
-|:-:|:-:|:-:|:-:|
-|`"magical crystal"`|`"crystal glowed"`|-6|`True`|
-|`"magical crystal"`|`"glowed brightly"`|2|`True`|
-|`"magical crystal"`|`"brightly.\nIts light"`|9|`True`|
-
-|start|end|distance|<= `max_dist`|
-|:-:|:-:|:-:|:-:|
-|`"crystal glowed"`|`"glowed brightly"`|-5|`True`|
-|`"crystal glowed"`|`"brightly.\nIts light"`|2|`True`|
-|`"crystal glowed"`|`"light danced"`|16|`True`|
-
-|start|end|distance|<= `max_dist`|
-|:-:|:-:|:-:|:-:|
-|`"glowed brightly"`|`"brightly.\nIts light"`|-7|`True`|
-|`"glowed brightly"`|`"light danced"`|7|`True`|
-
-|start|end|distance|<= `max_dist`|
-|:-:|:-:|:-:|:-:|
-|`"brightly.\nIts light"`|`"light danced"`|-4|`True`|
-
-|start|end|distance|<= `max_dist`|
-|:-:|:-:|:-:|:-:|
-|`"Deep within"`|`"to be discovered"`|18|`True`|
-
-The final passages should be:
-
-```
-"magical crystal glowed brightly.\nIts light"
-"crystal glowed brightly.\nIts light danced"
-"glowed brightly.\nIts light danced"
-"brightly.\nIts light danced"
-"Deep within, secrets waited to be discovered"
-```
-
 ### Repeated passages
 
 Building out this test made me realize that I needed to find all occurences of a passage in a document (`document.find` only returns the first occurence) so I used `regex.finditer`.
