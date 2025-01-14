@@ -299,50 +299,43 @@ passages = [""]
 
 Passages:
 
-|passage|start|end|
-|:-:|:-:|:-:|
-|`''`|0|0|
-|`''`|1|1|
-|`''`|2|2|
-|`''`|3|3|
-
-Spans:
-
-|start|end|distance|<= `max_dist`|
+|rank|passage|start_pos|end_pos|
 |:-:|:-:|:-:|:-:|
-|`''`|`''`|1|`True`|
-|`''`|`''`|2|`True`|
-|`''`|`''`|3|`True`|
+|1|`''`|0|0|
+|2|`''`|1|1|
+|3|`''`|2|2|
+|4|`''`|3|3|
 
-|start|end|distance|<= `max_dist`|
+Spans (all within `max_dist`):
+
+|start rank|end rank|distance|<= `max_dist`|
 |:-:|:-:|:-:|:-:|
-|`''`|`''`|1|`True`|
-|`''`|`''`|2|`True`|
+|1|2|1|`True`|
+|1|3|2|`True`|
+|1|4|3|`True`|
+|2|3|1|`True`|
+|2|4|2|`True`|
+|3|4|1|`True`|
 
-|start|end|distance|<= `max_dist`|
+grouping by ending passage end position and keeping the span with the smallest start.start_pos:
+
+|start rank|end rank|start.start_pos|end.end_pos|
 |:-:|:-:|:-:|:-:|
-|`''`|`''`|1|`True`|
+|1|2|0|1
+|1|3|0|2
+|1|4|0|3
 
-Longest span for each starting passage:
 
-|start|end|distance|<= `max_dist`|
+grouping by start.start_pos and keeping the span with the largest end.end_pos:
+
+|start rank|end rank|start.start_pos|end.end_pos|
 |:-:|:-:|:-:|:-:|
-|`''`|`''`|3|`True`|
-
-|start|end|distance|<= `max_dist`|
-|:-:|:-:|:-:|:-:|
-|`''`|`''`|2|`True`|
-
-|start|end|distance|<= `max_dist`|
-|:-:|:-:|:-:|:-:|
-|`''`|`''`|1|`True`|
+|1|4|0|3
 
 Resulting passages:
 
 ```
 "doc"
-"oc"
-"c"
 ```
 
 ## Whitespace character passages
