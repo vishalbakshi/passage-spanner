@@ -28,119 +28,106 @@ passages = [
     "sleeping hound.\nThe nimble"    
 ]
 ```
-
 Here are the starting and ending positions of each passage in the `document` (manually counted):
 
-|passage|start|end|
-|:-:|:-:|:-:|
-|`"brown fox jumps over"`|10|29
-|`"fox jumps over the lazy"`|16|38
-|`"over the lazy dog.\nA clever"`|26|52
-|`"the lazy dog"`|31|42
-|`"sleeping hound.\nThe nimble"`|75|100
-
-From this I can see that my `end_pos` calculation is actually incorrect, they are off by 1. I need to subtract 1:
-
-```python
-def end_pos(self): return self.start_pos + self.length - 1
-```
+|rank|passage|start_pos|end_pos|
+|:-:|:-:|:-:|:-:|
+|1|`"brown fox jumps over"`|10|29
+|2|`"fox jumps over the lazy"`|16|38
+|3|`"over the lazy dog.\nA clever"`|26|52
+|4|`"the lazy dog"`|31|42
+|5|`"sleeping hound.\nThe nimble"`|75|100
 
 Looking now at all 10 spans manually:
 
-|start|end|distance|<= `max_dist`|
+|start rank|end rank|distance|<= `max_dist`|
 |:-:|:-:|:-:|:-:|
-|`"brown fox jumps over"`|`"fox jumps over the lazy"`|-13|`True`|
-|`"brown fox jumps over"`|`"over the lazy dog.\nA clever"`|-3|`True`|
-|`"brown fox jumps over"`|`"the lazy dog"`|2|`True`|
-|`"brown fox jumps over"`|`"sleeping hound.\nThe nimble"`|46|`False`|
-|`"fox jumps over the lazy"`|`"over the lazy dog.\nA clever"`|-12|`True`|
-|`"fox jumps over the lazy"`|`"the lazy dog"`|-7|`True`|
-|`"fox jumps over the lazy"`|`"sleeping hound.\nThe nimble"`|37|`False`|
-|`"over the lazy dog.\nA clever"`|`"the lazy dog"`|-21|`True`|
-|`"over the lazy dog.\nA clever"`|`"sleeping hound.\nThe nimble"`|23|`False`|
-|`"the lazy dog"`|`"sleeping hound.\nThe nimble"`|33|`False`|
+|1|2|-13|`True`|
+|1|3|-3|`True`|
+|1|4|2|`True`|
+|1|5|46|`False`|
+|2|3|-12|`True`|
+|2|4|-7|`True`|
+|2|5|37|`False`|
+|3|4|-21|`True`|
+|3|5|23|`False`|
+|4|5|33|`False`|
 
-They're all off by 1 but that's expected since my end position moved back 1.
+Filtering out all spans that have a distance of more than 20 characters:
 
-I'm now wondering if my `distance` calculation is wrong. Take for example `the lazy`:
+|start rank|end rank|start.start_pos|end.end_pos|
+|:-:|:-:|:-:|:-:|
+|1|2|10|38
+|1|3|10|52
+|1|4|10|42
+|2|3|16|52
+|2|4|16|42
+|3|4|26|42
+
+grouping by ending passage end position:
+
+|start rank|end rank|start.start_pos|end.end_pos|
+|:-:|:-:|:-:|:-:|
+|1|2|10|38
+
+|start rank|end rank|start.start_pos|end.end_pos|
+|:-:|:-:|:-:|:-:|
+|1|4|10|42
+|2|4|16|42
+|3|4|26|42
+
+|start rank|end rank|start.start_pos|end.end_pos|
+|:-:|:-:|:-:|:-:|
+|1|3|10|52
+|2|3|16|52
+
+keeping the span with the smallest start.start_pos:
+
+|start rank|end rank|start.start_pos|end.end_pos|
+|:-:|:-:|:-:|:-:|
+|1|2|10|38
+
+|start rank|end rank|start.start_pos|end.end_pos|
+|:-:|:-:|:-:|:-:|
+|1|4|10|42
+
+|start rank|end rank|start.start_pos|end.end_pos|
+|:-:|:-:|:-:|:-:|
+|1|3|10|52
+
+grouping by start.start_pos:
+
+|start rank|end rank|start.start_pos|end.end_pos|
+|:-:|:-:|:-:|:-:|
+|1|2|10|38
+|1|4|10|42
+|1|3|10|52
+
+keeping the span with the largest end.end_pos:
+
+|start rank|end rank|start.start_pos|end.end_pos|`highest_rank`|Included passages|
+|:-:|:-:|:-:|:-:|:-:|:-:|
+|1|3|10|52|1|1,2,3,4
 
 ```
-0 1 2 3 4 5 6 7 8
-t h e   l a z y
+document = """The quick brown fox jumps over the lazy dog.
+A clever fox leaps across the sleeping hound.
+The nimble creature bounds through the garden."""
+
+passages = [
+    1 "brown fox jumps over",
+    2 "fox jumps over the lazy",
+    3 "over the lazy dog.\nA clever",  
+    4 "the lazy dog",
+    5 "sleeping hound.\nThe nimble"    
+]
 ```
 
-There is 1 character between these two. So in that sense the distance should be 1. If I was writing documentation, this distance would be "the number of characters between the two passages".
-
-However based on my existing calculation:
-
-```python
-def distance(self): return self.end.start_pos - self.start.end_pos
-```
-
-The start position of the second word is `4` and the end position of the first word is `2`. The distance is then 2. This distance would be "the number of elements from the last character of the first passage to the first character of the last passage". I'm not sure which one is better. This latter one sounds fine.
-
-Moving on, filtering out all spans that have a distance of more than 20 characters:
-
-|start|end|distance|<= `max_dist`|
-|:-:|:-:|:-:|:-:|
-|`"brown fox jumps over"`|`"fox jumps over the lazy"`|-13|`True`|
-|`"brown fox jumps over"`|`"over the lazy dog.\nA clever"`|-3|`True`|
-|`"brown fox jumps over"`|`"the lazy dog"`|2|`True`|
-|`"fox jumps over the lazy"`|`"over the lazy dog.\nA clever"`|-12|`True`|
-|`"fox jumps over the lazy"`|`"the lazy dog"`|-7|`True`|
-|`"over the lazy dog.\nA clever"`|`"the lazy dog"`|-21|`True`|
-
-
-breaking it out into three groups by first passage:
-
-|start|end|distance|end.end_pos|
-|:-:|:-:|:-:|:-:|
-|`"brown fox jumps over"`|`"fox jumps over the lazy"`|-13|38
-|`"brown fox jumps over"`|`"over the lazy dog.\nA clever"`|-3|52
-|`"brown fox jumps over"`|`"the lazy dog"`|2|42
-
-|start|end|distance|end.end_pos|
-|:-:|:-:|:-:|:-:|
-|`"fox jumps over the lazy"`|`"over the lazy dog.\nA clever"`|-12|52
-|`"fox jumps over the lazy"`|`"the lazy dog"`|-7|42
-
-|start|end|distance|
-|:-:|:-:|:-:|:-:|
-|`"over the lazy dog.\nA clever"`|`"the lazy dog"`|-21|42
-
-
-Now comes the interesting part! Currently, I am finding the maximum span based on the max end position of the ending passage:
-
-```python
-L(max(g, key=lambda s: s.end.end_pos) for g in gs.values())
-```
-
-This would result in the following passages:
-
-|start|end|distance|end.end_pos|
-|:-:|:-:|:-:|:-:|
-|`"brown fox jumps over"`|`"over the lazy dog.\nA clever"`|-3|52
-
-|start|end|distance|end.end_pos|
-|:-:|:-:|:-:|:-:|
-|`"fox jumps over the lazy"`|`"over the lazy dog.\nA clever"`|-12|52
-
-|start|end|distance|
-|:-:|:-:|:-:|
-|`"over the lazy dog.\nA clever"`|`"the lazy dog"`|-21|42
-
-I'll update `end_pos` to be:
-
-```python
-def end_pos(self): return self.start_pos + self.length - 1
-```
-
-Expected final passages:
+Since the final span has a highest rank of 1, it should be the first text in the list, following by the unused passage of rank 5:
 
 ```
 "brown fox jumps over the lazy dog.\nA clever"
-"fox jumps over the lazy dog.\nA clever"
-"over the lazy dog."
+"sleeping hound.\nThe nimble"
 ```
 
 ### Passages that are completely contained within other passages
