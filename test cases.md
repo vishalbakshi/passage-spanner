@@ -412,6 +412,7 @@ document = """Special *formatting* and (punctuation) test!
 Some text with @#$% special chars.
 More text with <html> tags and line-breaks
     plus some indentation."""
+
 passages = [
     "*formatting*",
     "@#$%",
@@ -422,31 +423,32 @@ passages = [
 
 Passages:
 
-|passage|start|end|
-|:-:|:-:|:-:|
-|`"*formatting*"`|8|19|
-|`"@#$%"`|60|63|
-|`"<html>"`|95|100|
-|`"    plus"`|123|130|
+|rank|passage|start_pos|end_pos|
+|:-:|:-:|:-:|:-:|
+|1|`"*formatting*"`|8|19|
+|2|`"@#$%"`|60|63|
+|3|`"<html>"`|95|100|
+|4|`"    plus"`|123|130|
 
-Spans:
+Spans (less than `max_dist`):
 
 |start|end|distance|<= `max_dist`|
 |:-:|:-:|:-:|:-:|
-|`"*formatting*"`|`"@#$%"`|41|`False`|
-|`"*formatting*"`|`"<html>"`|76|`False`|
-|`"*formatting*"`|`"    plus"`|104|`False`|
 
-|start|end|distance|<= `max_dist`|
-|:-:|:-:|:-:|:-:|
-|`"@#$%"`|`"<html>"`|32|`False`|
-|`"@#$%"`|`"    plus"`|60|`False`|
 
-|start|end|distance|<= `max_dist`|
-|:-:|:-:|:-:|:-:|
-|`"<html>"`|`"    plus"`|23|`False`|
+All spans are greater than `max_dist` so there are no valid spans. Original passages are returned.
 
-All spans are greater than `max_dist` so there is no text extracted from the document.
+```
+"*formatting*",
+"@#$%",
+"<html>",
+"    plus"
+```
+
+---
+
+<mark>The tests below have not been updated and should be ignored.</mark>
+
 
 ### Passages that are completely contained within other passages
 [top](#test-cases)
