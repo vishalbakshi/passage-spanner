@@ -343,98 +343,65 @@ Resulting passages:
 
 ```
 document = "This is a\nsample\tdocument with some content."
-passages = [" ", "   ", "\n", "\t"]
+passages = [" ", "\n", "\t"]
 ```
 
 Passages:
 
-|passage|start|end|
-|:-:|:-:|:-:|
-|`' '`|4|4|
-|`' '`|7|7|
-|`'\n'`|9|9|
-|`'\t'`|16|16|
-|`' '`|25|25|
-|`' '`|30|30|
-|`' '`|35|35|
+|rank|passage|start_pos|end_pos|
+|:-:|:-:|:-:|:-:|
+|1|`' '`|4|4|
+|1|`' '`|7|7|
+|2|`'\n'`|9|9|
+|3|`'\t'`|16|16|
+|1|`' '`|25|25|
+|1|`' '`|30|30|
+|1|`' '`|35|35|
 
-Spans:
+Spans (less than `max_dist`):
 
 |start|end|distance|<= `max_dist`|
 |:-:|:-:|:-:|:-:|
-|`' '`|`' '`|3|`True`|
-|`' '`|`'\n'`|5|`True`|
-|`' '`|`'\t'`|12|`True`|
-|`' '`|`' '`|21|`False`|
-|`' '`|`' '`|26|`False`|
-|`' '`|`' '`|31|`False`|
+|1|1|3|`True`|
+|1|2|5|`True`|
+|1|3|12|`True`|
+|1|2|2|`True`|
+|1|3|9|`True`|
+|1|1|18|`True`|
+|2|3|7|`True`|
+|2|1|16|`True`|
+|3|1|9|`True`|
+|3|1|14|`True`|
+|3|1|19|`True`|
+|1|1|5|`True`|
+|1|1|10|`True`|
+|1|1|5|`True`|
 
+grouping by ending passage end position and keeping the span with the smallest start.start_pos:
 
-|start|end|distance|<= `max_dist`|
+|start rank|end rank|start.start_pos|end.end_pos|
 |:-:|:-:|:-:|:-:|
-|`' '`|`'\n'`|2|`True`|
-|`' '`|`'\t'`|9|`True`|
-|`' '`|`' '`|18|`True`|
-|`' '`|`' '`|23|`False`|
-|`' '`|`' '`|28|`False`|
+|1|1|4|7
+|1|2|4|9
+|1|3|4|16
+|1|1|7|25
+|3|1|16|30
+|3|1|16|35
 
-|start|end|distance|<= `max_dist`|
+grouping by start.start_pos and keeping the span with the largest end.end_pos:
+
+|start rank|end rank|start.start_pos|end.end_pos|
 |:-:|:-:|:-:|:-:|
-|`'\n'`|`'\t'`|7|`True`|
-|`'\n'`|`' '`|16|`True`|
-|`'\n'`|`' '`|21|`False`|
-|`'\n'`|`' '`|26|`False`|
-
-|start|end|distance|<= `max_dist`|
-|:-:|:-:|:-:|:-:|
-|`'\t'`|`' '`|9|`True`|
-|`'\t'`|`' '`|14|`True`|
-|`'\t'`|`' '`|19|`True`|
-
-|start|end|distance|<= `max_dist`|
-|:-:|:-:|:-:|:-:|
-|`' '`|`' '`|5|`True`|
-|`' '`|`' '`|10|`True`|
-
-|start|end|distance|<= `max_dist`|
-|:-:|:-:|:-:|:-:|
-|`' '`|`' '`|5|`True`|
-
-Longest span for each starting passage:
-
-|start|end|distance|<= `max_dist`|
-|:-:|:-:|:-:|:-:|
-|`' '`|`'\t'`|12|`True`|
-
-|start|end|distance|<= `max_dist`|
-|:-:|:-:|:-:|:-:|
-|`' '`|`' '`|18|`True`|
-
-|start|end|distance|<= `max_dist`|
-|:-:|:-:|:-:|:-:|
-|`'\n'`|`' '`|16|`True`|
-
-|start|end|distance|<= `max_dist`|
-|:-:|:-:|:-:|:-:|
-|`'\t'`|`' '`|19|`True`|
-
-|start|end|distance|<= `max_dist`|
-|:-:|:-:|:-:|:-:|
-|`' '`|`' '`|10|`True`|
-
-|start|end|distance|<= `max_dist`|
-|:-:|:-:|:-:|:-:|
-|`' '`|`' '`|5|`True`|
+|1|3|4|16
+|1|1|7|25
+|3|1|16|35
 
 Resulting passages:
 
 ```
 " is a\nsample\t"
 " a\nsample\tdocument "
-"\nsample\tdocument "
 "\tdocument with some "
-" with some "
-" some "
 ```
 
 ### Passages with special characters or formatting
