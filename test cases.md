@@ -235,75 +235,6 @@ The final texts should be as followed (no unused passages):
 "Deep within, secrets waited to be discovered"
 ```
 
-### Passages that are completely contained within other passages
-
-```
-"""The majestic unicorn galloped through the enchanted forest.
-Its rainbow mane sparkled in the golden sunlight.
-Ancient magic flowed through the mystical creature."""
-```
-
-Passages:
-
-|passage|start|end|
-|:-:|:-:|:-:|
-|`'majestic unicorn galloped through the enchanted'`|4|50
-|`'unicorn galloped'`|13|28
-|`'galloped through'`|21|36
-|`'the enchanted forest.\nIts rainbow'`|38|70
-|`'rainbow mane'`|64|75
-|`'Ancient magic'`|110|122
-
-Spans:
-
-|start|end|distance|<= `max_dist`|
-|:-:|:-:|:-:|:-:|
-|`'majestic unicorn galloped through the enchanted'`|`'unicorn galloped'`|-37|`True`|
-|`'majestic unicorn galloped through the enchanted'`|`'galloped through'`|-29|`True`|
-|`'majestic unicorn galloped through the enchanted'`|`'the enchanted forest.\nIts rainbow'`|-12|`True`|
-|`'majestic unicorn galloped through the enchanted'`|`'rainbow mane'`|14|`True`|
-|`'majestic unicorn galloped through the enchanted'`|`'Ancient magic'`|60|`False`|
-|`'unicorn galloped'`|`'galloped through'`|-7|`True`|
-|`'unicorn galloped'`|`'the enchanted forest.\nIts rainbow'`|10|`True`|
-|`'unicorn galloped'`|`'rainbow mane'`|36|`False`|
-|`'unicorn galloped'`|`'Ancient magic'`|82|`False`|
-|`'galloped through'`|`'the enchanted forest.\nIts rainbow'`|2|`True`|
-|`'galloped through'`|`'rainbow mane'`|28|`False`|
-|`'galloped through'`|`'Ancient magic'`|74|`False`|
-|`'the enchanted forest.\nIts rainbow'`|`'rainbow mane'`|-6|`True`|
-|`'the enchanted forest.\nIts rainbow'`|`'Ancient magic'`|40|`False`|
-|`'rainbow mane'`|`'Ancient magic'`|35|`False`|
-
-Filtering out all spans that have a distance of more than 20 characters and grouping by first passage:
-
-|start|end|distance|<= `max_dist`|
-|:-:|:-:|:-:|:-:|
-|`'majestic unicorn galloped through the enchanted'`|`'unicorn galloped'`|-37|`True`|
-|`'majestic unicorn galloped through the enchanted'`|`'galloped through'`|-29|`True`|
-|`'majestic unicorn galloped through the enchanted'`|`'the enchanted forest.\nIts rainbow'`|-12|`True`|
-|`'majestic unicorn galloped through the enchanted'`|`'rainbow mane'`|14|`True`|
-
-|start|end|distance|<= `max_dist`|
-|:-:|:-:|:-:|:-:|
-|`'unicorn galloped'`|`'galloped through'`|-7|`True`|
-|`'unicorn galloped'`|`'the enchanted forest.\nIts rainbow'`|10|`True`|
-
-|start|end|distance|<= `max_dist`|
-|:-:|:-:|:-:|:-:|
-|`'galloped through'`|`'the enchanted forest.\nIts rainbow'`|2|`True`|
-
-|start|end|distance|<= `max_dist`|
-|:-:|:-:|:-:|:-:|
-|`'the enchanted forest.\nIts rainbow'`|`'rainbow mane'`|-6|`True`|
-
-The final passages should be:
-
-```
-"majestic unicorn galloped through the enchanted forest.\nIts rainbow mane"
-"unicorn galloped through the enchanted forest.\nIts rainbow"
-"galloped through the enchanted forest.\nIts rainbow"
-"the enchanted forest.\nIts rainbow mane"
-```
 ### Repeated passages
 
 Building out this test made me realize that I needed to find all occurences of a passage in a document (`document.find` only returns the first occurence) so I used `regex.finditer`.
@@ -554,6 +485,76 @@ Spans:
 |`"<html>"`|`"    plus"`|23|`False`|
 
 All spans are greater than `max_dist` so there is no text extracted from the document.
+
+### Passages that are completely contained within other passages
+
+```
+"""The majestic unicorn galloped through the enchanted forest.
+Its rainbow mane sparkled in the golden sunlight.
+Ancient magic flowed through the mystical creature."""
+```
+
+Passages:
+
+|passage|start|end|
+|:-:|:-:|:-:|
+|`'majestic unicorn galloped through the enchanted'`|4|50
+|`'unicorn galloped'`|13|28
+|`'galloped through'`|21|36
+|`'the enchanted forest.\nIts rainbow'`|38|70
+|`'rainbow mane'`|64|75
+|`'Ancient magic'`|110|122
+
+Spans:
+
+|start|end|distance|<= `max_dist`|
+|:-:|:-:|:-:|:-:|
+|`'majestic unicorn galloped through the enchanted'`|`'unicorn galloped'`|-37|`True`|
+|`'majestic unicorn galloped through the enchanted'`|`'galloped through'`|-29|`True`|
+|`'majestic unicorn galloped through the enchanted'`|`'the enchanted forest.\nIts rainbow'`|-12|`True`|
+|`'majestic unicorn galloped through the enchanted'`|`'rainbow mane'`|14|`True`|
+|`'majestic unicorn galloped through the enchanted'`|`'Ancient magic'`|60|`False`|
+|`'unicorn galloped'`|`'galloped through'`|-7|`True`|
+|`'unicorn galloped'`|`'the enchanted forest.\nIts rainbow'`|10|`True`|
+|`'unicorn galloped'`|`'rainbow mane'`|36|`False`|
+|`'unicorn galloped'`|`'Ancient magic'`|82|`False`|
+|`'galloped through'`|`'the enchanted forest.\nIts rainbow'`|2|`True`|
+|`'galloped through'`|`'rainbow mane'`|28|`False`|
+|`'galloped through'`|`'Ancient magic'`|74|`False`|
+|`'the enchanted forest.\nIts rainbow'`|`'rainbow mane'`|-6|`True`|
+|`'the enchanted forest.\nIts rainbow'`|`'Ancient magic'`|40|`False`|
+|`'rainbow mane'`|`'Ancient magic'`|35|`False`|
+
+Filtering out all spans that have a distance of more than 20 characters and grouping by first passage:
+
+|start|end|distance|<= `max_dist`|
+|:-:|:-:|:-:|:-:|
+|`'majestic unicorn galloped through the enchanted'`|`'unicorn galloped'`|-37|`True`|
+|`'majestic unicorn galloped through the enchanted'`|`'galloped through'`|-29|`True`|
+|`'majestic unicorn galloped through the enchanted'`|`'the enchanted forest.\nIts rainbow'`|-12|`True`|
+|`'majestic unicorn galloped through the enchanted'`|`'rainbow mane'`|14|`True`|
+
+|start|end|distance|<= `max_dist`|
+|:-:|:-:|:-:|:-:|
+|`'unicorn galloped'`|`'galloped through'`|-7|`True`|
+|`'unicorn galloped'`|`'the enchanted forest.\nIts rainbow'`|10|`True`|
+
+|start|end|distance|<= `max_dist`|
+|:-:|:-:|:-:|:-:|
+|`'galloped through'`|`'the enchanted forest.\nIts rainbow'`|2|`True`|
+
+|start|end|distance|<= `max_dist`|
+|:-:|:-:|:-:|:-:|
+|`'the enchanted forest.\nIts rainbow'`|`'rainbow mane'`|-6|`True`|
+
+The final passages should be:
+
+```
+"majestic unicorn galloped through the enchanted forest.\nIts rainbow mane"
+"unicorn galloped through the enchanted forest.\nIts rainbow"
+"galloped through the enchanted forest.\nIts rainbow"
+"the enchanted forest.\nIts rainbow mane"
+```
 
 ### Non-existent passages
 
