@@ -61,19 +61,20 @@ grouping by start.start_pos and keeping the span with the largest end.end_pos:
 |4|3|97959|102557
 |3|1|100094|104684
 |1|7|102340|108423
-|7|5|106476|110645
+|2|5|104561|110645
 
 
 Sorting by rank (all passages are included in spans):
 
 |Start Passage|End Passage|Sample Text|
 |:-:|:-:|:-:|
-|1|7|`'The test and validation s...pear in the training set.'`|
 |3|1|`'Splitting off our validat...simple model can achieve.'`|
+|1|7|`'The test and validation s...pear in the training set.'`|
+|2|5|`"(It's also a good idea fo...h order you read them in."`|
 |4|3|`"(We'll even take you step...s in your validation set."`|
-|7|5|`'<img src="images/timeseri...h order you read them in.'`|
-|9|8|`'*Machine learning* is a d...is called *segmentation*.'`|
 |10|6|`'That is always our goal w...et starts getting worse).'`|
+|9|8|`'*Machine learning* is a d...is called *segmentation*.'`|
+
 
 
 ## Chapter 2 Question 22 
