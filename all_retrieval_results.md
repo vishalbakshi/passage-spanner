@@ -138,6 +138,8 @@ Final spans:
 |9|2|64219|69795
 |5|7|83123|89207
 
+Final texts:
+
 |Start Passage|End Passage|Ranks contained|Sample Text|
 |:-:|:-:|:-:|:-:|
 |3|9|1,3,9|`"Let's check our accuracy....loss function is better."`
@@ -164,21 +166,24 @@ Final spans:
 |3|37587|39404
 |2|43353|44284
 
-|Start Passage|End Passage|Distance|
-|:-:|:-:|:-:|
+Final spans:
+
+|start rank|end rank|start.start_pos|end.end_pos|
+|:-:|:-:|:-:|:-:|
 |9|5|1862
-|7|5|-197
 |10|4|1357
-|6|4|-203
 |4|3|1809
 
-|Start Passage|End Passage|Sample Text|
-|:-:|:-:|:-:|
-|9|5|`'The Wikipedia English is ...s from many, many pieces?'`
-|7|5|`'Using this approach, we h...s from many, many pieces?'`
-|10|4|`"Since `fine_tune` doesn't...g the first 10 documents."`
-|6|4|`'We can now use it to fine...g the first 10 documents.'`
-|4|3|`'A classifier, however, pr...nce just three years ago.'`
+Final texts:
+
+|Start Passage|End Passage|Ranks contained|Sample Text|
+|:-:|:-:|:-:|:-:|
+|1|1|1|`"What is important is that...be passed to `TextBlock`."`
+|2|2|2|`"Many people assume or hop...r your specific problems."`
+|4|3|3,4|`'A classifier, however, pr...nce just three years ago.'`
+|10|4|4,6,10|`"Since `fine_tune` doesn't...g the first 10 documents."`
+|9|5|5,7,9|`'The Wikipedia English is ...s from many, many pieces?'`
+|8|8|8|`"That means we'll need our...he previous one left off."`
 
 ## Chapter 13 Question 17
 ([top](#table-of-contents))
