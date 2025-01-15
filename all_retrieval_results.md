@@ -201,20 +201,23 @@ Final texts:
 |10|35809|37721
 |7|49708|52032
 
-|Start Passage|End Passage|Distance|
-|:-:|:-:|:-:|
-|9|5|-157
-|3|4|1420
-|8|2|1490
-|4|1|1711
-|2|1|-169
-|6|10|-295
+Final spans:
 
-|Start Passage|End Passage|Sample Text|
-|:-:|:-:|:-:|
-|9|5|`'We can see we get the sam...oing to show it here too!'`
-|3|4|`"That's because a linear l...d less as it gets deeper."`
-|8|2|`'_Features_ is never used ...since we have two layers.'`
-|4|1|`'### Understanding Convolu...or images.\n### A Note Abo'`
-|2|1|`'If we left the number of ...or images.\n### A Note Abo'`
-|6|10|`"We did do that in the `ge...well! Let's find out why."`
+|start rank|end rank|start.start_pos|end.end_pos|
+|:-:|:-:|:-:|:-:|
+|9|5|11835|15391
+|3|4|18723|23974
+|8|2|20516|25854
+|4|1|22104|26910
+|6|10|34168|37721
+
+Final texts:
+
+|Start Passage|End Passage|Ranks contained|Sample Text|
+|:-:|:-:|:-:|:-:|
+|4|1|1,2,4|`'### Understanding Convolu...or images.\n### A Note Abo'`
+|8|2|2,4,8|`'_Features_ is never used ...since we have two layers.'`
+|3|4|3,4,8|`"That's because a linear l...d less as it gets deeper."`
+|9|5|5,9|`'We can see we get the sam...oing to show it here too!'`
+|6|10|6,10|`"We did do that in the `ge...well! Let's find out why."`
+|7|7|7|`"However, this can cause p...ochs and see how it goes."`
