@@ -13,7 +13,7 @@ This file contains the definition of expected results for a sample of retrieved 
 ([top](#table-of-contents))
 
 
-|Passage Rank|Start|End|
+|Passage Rank|start_pos|end_pos|
 |:-:|:-:|:-:|
 |10|61090|63395|
 |6|63181|65325|
@@ -28,41 +28,53 @@ This file contains the definition of expected results for a sample of retrieved 
 
 I'm listing only those Spans that are at most a distance of `max_dist` (2000 characters) apart, for brevity:
 
-|Start Passage|End Passage|Distance|
-|:-:|:-:|:-:|
-|10|6|-214|
-|9|8|-294|
-|4|3|-208|
-|3|1|-217|
-|1|2|-123|
-|1|7|1792|
-|2|7|-249|
-|2|5|1574|
-|7|5|-124|
+|start rank|end rank|start.start_pos|end.end_pos|
+|:-:|:-:|:-:|:-:|
+|10|6|61090|65325
+|9|8|83166|86662
+|4|3|97959|102557
+|3|1|100094|104684
+|1|2|102340|106725
+|1|7|102340|108423
+|2|7|104561|108423
+|2|5|104561|110645
+|7|5|106476|110645
 
-Keeping the longest span for each starting passage gives us our final 7 spans:
+grouping by ending passage end position and keeping the span with the smallest start.start_pos:
 
-|Start Passage|End Passage|Distance|
-|:-:|:-:|:-:|
-|10|6|-214|
-|9|8|-294|
-|4|3|-208|
-|3|1|-217|
-|1|7|1792|
-|2|5|1574|
-|7|5|-124|
+|start rank|end rank|start.start_pos|end.end_pos|
+|:-:|:-:|:-:|:-:|
+|10|6|61090|65325
+|9|8|83166|86662
+|4|3|97959|102557
+|3|1|100094|104684
+|1|2|102340|106725
+|1|7|102340|108423
+|7|5|106476|110645
 
-Looking at the first and last few characters for each span:
+grouping by start.start_pos and keeping the span with the largest end.end_pos:
+
+|start rank|end rank|start.start_pos|end.end_pos|
+|:-:|:-:|:-:|:-:|
+|10|6|61090|65325
+|9|8|83166|86662
+|4|3|97959|102557
+|3|1|100094|104684
+|1|7|102340|108423
+|7|5|106476|110645
+
+
+Sorting by rank (all passages are included in spans):
 
 |Start Passage|End Passage|Sample Text|
 |:-:|:-:|:-:|
-|10|6|`'That is always our goal w...et starts getting worse).'`|
-|9|8|`'*Machine learning* is a d...is called *segmentation*.'`|
-|4|3|`"(We'll even take you step...s in your validation set."`|
-|3|1|`'Splitting off our validat...simple model can achieve.'`|
 |1|7|`'The test and validation s...pear in the training set.'`|
-|2|5|`"(It's also a good idea fo...h order you read them in."`|
+|3|1|`'Splitting off our validat...simple model can achieve.'`|
+|4|3|`"(We'll even take you step...s in your validation set."`|
 |7|5|`'<img src="images/timeseri...h order you read them in.'`|
+|9|8|`'*Machine learning* is a d...is called *segmentation*.'`|
+|10|6|`'That is always our goal w...et starts getting worse).'`|
+
 
 ## Chapter 2 Question 22 
 ([top](#table-of-contents))
