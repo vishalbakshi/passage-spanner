@@ -129,23 +129,24 @@ Sorting by rank, and including passages not contained in any of the four spans:
 |10|84919|87167
 |7|86843|89207
 
-|Start Passage|End Passage|Distance|
-|:-:|:-:|:-:|
-|3|9|1558
-|1|4|1554
-|9|2|1527
-|4|2|-277
-|5|7|1803
-|10|7|-324
+Final spans:
 
-|Start Passage|End Passage|Sample Text|
-|:-:|:-:|:-:|
-|3|9|`"Let's check our accuracy....loss function is better."`
-|1|4|`'The problem is that a sma...why did we define a loss?'`
-|9|2|`'It is also a vector (i.e....ance on that single item.'`
-|4|2|`'In PyTorch, we always ass...ance on that single item.'`
-|5|7|`'This is known as the *uni...l contained in *tensors*.'`
-|10|7|`'A function that can solve...l contained in *tensors*.'`
+|start rank|end rank|start.start_pos|end.end_pos|
+|:-:|:-:|:-:|:-:|
+|3|9|60664|66008
+|1|4|62499|67812
+|9|2|64219|69795
+|5|7|83123|89207
+
+|Start Passage|End Passage|Ranks contained|Sample Text|
+|:-:|:-:|:-:|:-:|
+|3|9|1,3,9|`"Let's check our accuracy....loss function is better."`
+|1|4|1,4,9|`'The problem is that a sma...why did we define a loss?'`
+|9|2|2,4,9|`'It is also a vector (i.e....ance on that single item.'`
+|5|7|5,7,10|`'This is known as the *uni...l contained in *tensors*.'`
+|6|6|6|`"We want to distinguish cl...hrough our 7 step process."`
+|8|8|8|`"This is where that decisi...s will change its result."`
+
 
 ## Chapter 10 Question 6 
 ([top](#table-of-contents))
