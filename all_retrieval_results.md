@@ -75,8 +75,6 @@ Sorting by rank (all passages are included in spans):
 |10|6|`'That is always our goal w...et starts getting worse).'`|
 |9|8|`'*Machine learning* is a d...is called *segmentation*.'`|
 
-
-
 ## Chapter 2 Question 22 
 ([top](#table-of-contents))
 
@@ -93,25 +91,27 @@ Sorting by rank (all passages are included in spans):
 |3|62239|64539|
 |6|66421|68761|
 
-Identifying passages at or below 2000 characters apart, keeping the longest span for each starting passage:
+Valid spans, grouping by start.start_pos and keeping the span with the largest end.end_pos, then grouping by end.end_pos and keeping the span with the smallest start.start_pos:
 
-|Start Passage|End Passage|Distance|
-|:-:|:-:|:-:|
-|2|4|1619
-|1|5|1840
-|4|3|1952
-|5|3|-249
-|3|6|1882
+|start rank|end rank|start.start_pos|end.end_pos|
+|:-:|:-:|:-:|:-:|
+|2|4|56386|60287
+|1|5|56136|62488
+|4|3|58005|64539
+|3|6|62239|68761
 
-The first and last few characters for each span:
+Sorting by rank, and including passages not contained in any of the four spans:
 
-|Start Passage|End Passage|Sample Text|
-|:-:|:-:|:-:|
-|2|4|`"So what's left is a web a,,,downsides too, of course."`
-|1|5|`'If you do need this funct...nally find is easy to do.'`
-|4|3|`'6. Click Launch.\n<img alt...s can result in disaster!'`
-|5|3|`'The hardware that you wil...s can result in disaster!'`
-|3|6|`"It's still not easy but i...should be very concerned."`
+|Start Passage|End Passage|Ranks contained|Sample Text|
+|:-:|:-:|:-:|:-:|
+|1|5|1,4,5|`'If you do need this funct...nally find is easy to do.'`
+|2|4|1,2,4|`"So what's left is a web a,,,downsides too, of course."`
+|4|3|3,4,5|`'6. Click Launch.\n<img alt...s can result in disaster!'`
+|3|6|3,6|`"It's still not easy but i...should be very concerned."`
+|7|7|7|`"fastai includes many pred...es they end up as unreali"`
+|8|8|8|`"This is a specific exampl...rain our bear classifier."`
+|9|9|9|`"Both of these can be prob...ence to the final result."`
+|10|10|10|`"Deep learning does greatl...f the items in that set)."`
 
 ## Chapter 4 Question 20 
 ([top](#table-of-contents))
